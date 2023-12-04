@@ -1,21 +1,30 @@
 import React from "react"
 import prisma from "../lib/prisma"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "./ui/card"
+import { CldImage } from "@/components/CldImage"
 
 const Post = ({
   id,
   title,
-  description,
   email,
   location,
   contact,
+  image,
+  age,
+  user,
+  vaccines,
+  size,
 }: {
   id: string
   title: string
-  description: string
   email?: string
   location: string
   contact: number
+  image: string
+  size: string
+  user: string
+  vaccines: string
+  age: string
 }) => {
   return (
     <li>
@@ -23,9 +32,16 @@ const Post = ({
         <CardHeader>
           <CardTitle>{title}</CardTitle>
         </CardHeader>
-        <CardContent>{description}</CardContent>
+        <CardContent>
+          {vaccines && <p>Vacunas: {vaccines}</p>}
+          {size && <p>Tamaño: {size}</p>}
+          {age && <p>Edad: {age}</p>}
+          {image && (
+            <CldImage src={image} alt="" sizes="30vw" width={64} height={64} />
+          )}
+        </CardContent>
         <CardFooter className="grid text-muted-foreground">
-          {email && <p>Autor: {email}</p>}
+          {user && <p>Autor: {user}</p>}
           <p>Ubicación: {location}</p>
           <p>Contacto: {contact}</p>
         </CardFooter>

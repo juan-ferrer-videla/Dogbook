@@ -1,5 +1,6 @@
 import { Posts } from "@/components/Posts"
 import { Skeleton } from "@/components/ui/skeleton"
+import { CldImage } from "@/components/CldImage"
 import { Suspense } from "react"
 
 const PostSkeletons = () => {
