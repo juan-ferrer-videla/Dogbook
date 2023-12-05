@@ -2,8 +2,6 @@ import { Posts } from "@/components/Posts"
 import { Skeleton } from "@/components/ui/skeleton"
 import { Suspense } from "react"
 
-export const revalidate = 0
-
 const PostSkeletons = () => {
   return (
     <>

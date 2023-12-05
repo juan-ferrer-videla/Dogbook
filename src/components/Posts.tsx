@@ -2,6 +2,7 @@ import React from "react"
 import prisma from "../lib/prisma"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "./ui/card"
 import { CldImage } from "@/components/CldImage"
+import { unstable_noStore as noStore } from "next/cache"
 
 const Post = ({
   id,
@@ -51,6 +52,7 @@ const Post = ({
 }
 
 const Posts = async () => {
+  noStore()
   const posts = await prisma.post.findMany()
   return (
     <ul className="grid gap-y-4">

@@ -6,7 +6,7 @@ import React from "react"
 
 const DashboardPage = async () => {
   const session = await getServerSession()
-  if (!session?.user) redirect("/")
+  if (!session?.user) redirect("/api/auth/signin")
 
   return (
     <>
