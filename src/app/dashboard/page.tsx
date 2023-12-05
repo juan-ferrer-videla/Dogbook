@@ -13,7 +13,7 @@ const DashboardPage = async () => {
       <h2 className="mb-4 text-center text-3xl font-bold leading-tight tracking-tight sm:mb-8 md:mb-12 md:text-5xl lg:leading-[1.1]">
         Dashboard
       </h2>
-      <div className="grid items-start sm:grid-cols-2">
+      <div className="grid items-start gap-x-12 gap-y-8 lg:grid-cols-2 xl:gap-x-20">
         <FormPost />
         <div>
           <h3 className="mb-4 text-xl font-semibold sm:text-2xl md:text-3xl">

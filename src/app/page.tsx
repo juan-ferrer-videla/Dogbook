@@ -1,24 +1,6 @@
+import { PostSkeletons } from "@/components/PostSkeletons"
 import { Posts } from "@/components/Posts"
-import { Skeleton } from "@/components/ui/skeleton"
 import { Suspense } from "react"
-
-const PostSkeletons = () => {
-  return (
-    <>
-      <ul className="grid gap-y-4">
-        <li>
-          <Skeleton className="h-40 w-full" />
-        </li>
-        <li>
-          <Skeleton className="h-40 w-full" />
-        </li>
-        <li>
-          <Skeleton className="h-40 w-full" />
-        </li>
-      </ul>
-    </>
-  )
-}
 
 export default function Home() {
   return (

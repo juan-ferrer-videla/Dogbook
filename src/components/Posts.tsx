@@ -30,16 +30,16 @@ const Post = ({
   return (
     <li>
       <Card>
-        <CardHeader>
+        <CardHeader className="flex-row items-center space-x-6">
+          {image && (
+            <CldImage src={image} alt="" sizes="30vw" width={64} height={64} />
+          )}
           <CardTitle>{title}</CardTitle>
         </CardHeader>
         <CardContent>
           {vaccines && <p>Vacunas: {vaccines}</p>}
           {size && <p>Tamaño: {size}</p>}
           {age && <p>Edad: {age}</p>}
-          {image && (
-            <CldImage src={image} alt="" sizes="30vw" width={64} height={64} />
-          )}
         </CardContent>
         <CardFooter className="grid text-muted-foreground">
           {user && <p>Autor: {user}</p>}

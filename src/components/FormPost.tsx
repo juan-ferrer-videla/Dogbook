@@ -8,12 +8,20 @@ import { useSession } from "next-auth/react"
 import { createPost } from "@/actions/post"
 import { useFormStatus } from "react-dom"
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group"
+import { Spinner } from "./Spinner"
 
 const Submit = () => {
   const { pending } = useFormStatus()
   return (
-    <Button type="submit" className="justify-self-start" disabled={pending}>
-      Publicar
+    <Button type="submit" disabled={pending}>
+      {pending ? (
+        <>
+          <Spinner />
+          <span>Cargando</span>
+        </>
+      ) : (
+        "Publicar"
+      )}
     </Button>
   )
 }
@@ -33,15 +41,15 @@ const FormPost = () => {
       <legend className="mb-4 text-xl font-semibold sm:text-2xl md:text-3xl">
         Nuevo Post
       </legend>
-      <div className="grid w-full max-w-sm items-center gap-1.5">
+      <div className="grid w-full items-center gap-1.5">
         <Label htmlFor="title">Nombre</Label>
         <Input id="title" placeholder="Titulo" name="title" required />
       </div>
-      <div className="grid w-full max-w-sm items-center gap-1.5">
+      <div className="grid w-full items-center gap-1.5">
         <Label htmlFor="age">Edad</Label>
         <Input id="age" placeholder="6 meses" name="age" />
       </div>
-      <div className="grid w-full max-w-sm items-center gap-1.5">
+      <div className="grid w-full items-center gap-1.5">
         <Label htmlFor="size" className="mb-2">
           Tamaño
         </Label>
@@ -60,11 +68,11 @@ const FormPost = () => {
           </div>
         </RadioGroup>
       </div>
-      <div className="grid w-full max-w-sm items-center gap-1.5">
+      <div className="grid w-full items-center gap-1.5">
         <Label htmlFor="vaccines">Vacunas</Label>
         <Input id="vaccines" placeholder="Vacuna Polivalente" name="vaccines" />
       </div>
-      <div className="grid w-full max-w-sm items-center gap-1.5">
+      <div className="grid w-full items-center gap-1.5">
         <Label htmlFor="contact">Contacto</Label>
         <Input
           id="contact"
@@ -74,7 +82,7 @@ const FormPost = () => {
           required
         />
       </div>
-      <div className="grid w-full max-w-sm items-center gap-1.5">
+      <div className="grid w-full items-center gap-1.5">
         <Label htmlFor="location">Ubicación</Label>
         <Input
           id="location"
@@ -83,7 +91,7 @@ const FormPost = () => {
           required
         />
       </div>
-      <div className="grid w-full max-w-sm items-center gap-1.5">
+      <div className="grid w-full items-center gap-1.5">
         <Label htmlFor="image">Imagen</Label>
         <Input type="file" id="image" name="image" />
       </div>
