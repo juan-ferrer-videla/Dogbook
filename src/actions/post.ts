@@ -30,7 +30,7 @@ const postSchema = z.object({
   location: z.string(),
   email: z.string(),
   user: z.string(),
-  image: z.instanceof(File),
+  image: z.any(),
 })
 
 const uploadImage = async ({
