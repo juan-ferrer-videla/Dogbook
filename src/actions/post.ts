@@ -30,7 +30,8 @@ const postSchema = z.object({
   location: z.string(),
   email: z.string(),
   user: z.string(),
-  image: z.instanceof(File),
+  /*   image: z.instanceof(File),
+   */
 })
 
 const uploadImage = async ({
@@ -73,14 +74,14 @@ const uploadImage = async ({
 
 export const createPost = async (data: FormData) => {
   const postData = postSchema.parse(Object.fromEntries(data))
-  const { image: file } = postData
-  let publicId = ""
+  /*   const { image: file } = postData
+   */ let publicId = ""
 
-  if (file.size) {
+  /*   if (file.size) {
     const { signature, timestamp } = getSignature()
     const id = await uploadImage({ file, signature, timestamp })
     publicId = id ?? ""
-  }
+  } */
 
   await prisma.post.create({
     data: {
