@@ -76,7 +76,7 @@ export const createPost = async (data: FormData) => {
   const { image: file } = postData
   let publicId = ""
 
-  if (file.size) {
+  if (file instanceof File && file.size) {
     const { signature, timestamp } = getSignature()
     const id = await uploadImage({ file, signature, timestamp })
     publicId = id ?? ""
