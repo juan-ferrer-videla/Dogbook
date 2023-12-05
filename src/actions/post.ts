@@ -73,10 +73,10 @@ const uploadImage = async ({
 
 export const createPost = async (data: FormData) => {
   const postData = postSchema.parse(Object.fromEntries(data))
-  const { image: file } = postData
+  const file = postData.image as File
   let publicId = ""
 
-  if (file instanceof File && file.size) {
+  if (file.size) {
     const { signature, timestamp } = getSignature()
     const id = await uploadImage({ file, signature, timestamp })
     publicId = id ?? ""
