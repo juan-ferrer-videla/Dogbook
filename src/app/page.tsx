@@ -1,7 +1,8 @@
 import { Posts } from "@/components/Posts"
 import { Skeleton } from "@/components/ui/skeleton"
-import { CldImage } from "@/components/CldImage"
 import { Suspense } from "react"
+
+export const revalidate = 0
 
 const PostSkeletons = () => {
   return (
