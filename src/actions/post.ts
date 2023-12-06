@@ -4,6 +4,8 @@ import { z } from "zod"
 import prisma from "../lib/prisma"
 import { revalidatePath } from "next/cache"
 import { v2 as cloudinary } from "cloudinary"
+import { getServerSession } from "next-auth"
+import { redirect } from "next/navigation"
 
 const cloudinaryConfig = cloudinary.config({
   cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
@@ -33,6 +35,9 @@ const postSchema = z.object({
   image: z.any(),
 })
 
+const uploadEndpoint = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_URL as string
+const destroyEndpoint = process.env.NEXT_PUBLIC_CLOUDINARY_DESTROY_URL as string
+
 const uploadImage = async ({
   file,
   signature,
@@ -54,9 +59,7 @@ const uploadImage = async ({
   cloudinaryFormData.append("timestamp", timestamp)
   cloudinaryFormData.append("folder", folder)
 
-  const endpoint = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_URL as string
-
-  const response = await fetch(endpoint, {
+  const response = await fetch(uploadEndpoint, {
     method: "POST",
     body: cloudinaryFormData,
   })
@@ -91,4 +94,31 @@ export const createPost = async (data: FormData) => {
     },
   })
   revalidatePath("/")
+}
+
+export const deletePost = async ({
+  id,
+  imageId,
+}: {
+  id: string
+  imageId?: string
+}) => {
+  const session = await getServerSession()
+  const email = session?.user?.email
+
+  if (email) {
+    await prisma.post.delete({
+      where: {
+        id,
+        email,
+      },
+    })
+    if (imageId) {
+      await cloudinary.uploader.destroy(imageId)
+    }
+
+    revalidatePath("/")
+  } else {
+    redirect("/api/auth/signin")
+  }
 }

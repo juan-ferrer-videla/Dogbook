@@ -3,6 +3,7 @@ import prisma from "../lib/prisma"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "./ui/card"
 import { CldImage } from "@/components/CldImage"
 import { unstable_noStore as noStore } from "next/cache"
+import DeletePostButton from "./DeletePostButton"
 
 const Post = ({
   id,
@@ -15,6 +16,7 @@ const Post = ({
   user,
   vaccines,
   size,
+  withDelete = false,
 }: {
   id: string
   title: string
@@ -26,6 +28,7 @@ const Post = ({
   user: string
   vaccines: string
   age: string
+  withDelete?: boolean
 }) => {
   return (
     <li>
@@ -35,6 +38,7 @@ const Post = ({
             <CldImage src={image} alt="" sizes="30vw" width={64} height={64} />
           )}
           <CardTitle>{title}</CardTitle>
+          <button>asd</button>
         </CardHeader>
         <CardContent>
           {vaccines && <p>Vacunas: {vaccines}</p>}
@@ -45,6 +49,10 @@ const Post = ({
           {user && <p>Autor: {user}</p>}
           <p>Ubicación: {location}</p>
           <p>Contacto: {contact}</p>
+          {image}
+          {withDelete && (
+            <DeletePostButton id={id} imageId={image || undefined} />
+          )}
         </CardFooter>
       </Card>
     </li>
