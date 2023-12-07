@@ -36,7 +36,6 @@ const postSchema = z.object({
 })
 
 const uploadEndpoint = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_URL as string
-const destroyEndpoint = process.env.NEXT_PUBLIC_CLOUDINARY_DESTROY_URL as string
 
 const uploadImage = async ({
   file,

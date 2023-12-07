@@ -49,7 +49,6 @@ const Post = ({
           {user && <p>Autor: {user}</p>}
           <p>Ubicación: {location}</p>
           <p>Contacto: {contact}</p>
-          {image}
           {withDelete && (
             <DeletePostButton id={id} imageId={image || undefined} />
           )}

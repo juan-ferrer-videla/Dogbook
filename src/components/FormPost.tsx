@@ -93,7 +93,7 @@ const FormPost = () => {
       </div>
       <div className="grid w-full items-center gap-1.5">
         <Label htmlFor="image">Imagen</Label>
-        <Input type="file" id="image" name="image" />
+        <Input type="file" id="image" name="image" accept="image/*" />
       </div>
       <input type="hidden" name="email" value={email} required />
       <input type="hidden" name="user" value={user} required />
