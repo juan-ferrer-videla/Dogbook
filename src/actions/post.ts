@@ -35,6 +35,18 @@ const postSchema = z.object({
   image: z.any(),
 })
 
+const editSchema = z.object({
+  title: z.string(),
+  id: z.string(),
+  location: z.string(),
+  size: z.string().optional(),
+  vaccines: z.string().optional(),
+  age: z.string().optional(),
+  contact: z.string().optional(),
+  image: z.any(),
+  publicId: z.string(),
+})
+
 const uploadEndpoint = process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_URL as string
 
 const uploadImage = async ({
@@ -92,6 +104,37 @@ export const createPost = async (data: FormData) => {
       image: publicId,
     },
   })
+  revalidatePath("/")
+}
+
+export const editPost = async (data: FormData) => {
+  const postData = editSchema.parse(Object.fromEntries(data))
+  const file = postData.image as File
+  let publicId = postData.publicId
+
+  console.log(postData)
+
+  if (file.size) {
+    cloudinary.uploader.destroy(publicId)
+    const { signature, timestamp } = getSignature()
+    const id = await uploadImage({ file, signature, timestamp })
+    if (id) {
+      publicId = id
+    }
+  }
+
+  const { id, publicId: imageId, ...mutableData } = postData
+
+  const updated = await prisma.post.update({
+    where: { id: postData.id },
+    data: {
+      ...mutableData,
+      contact: Number(postData.contact),
+      createAt: Date.now(),
+      image: publicId,
+    },
+  })
+  console.log(updated)
   revalidatePath("/")
 }
 

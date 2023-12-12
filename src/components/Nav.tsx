@@ -1,25 +1,25 @@
-"use client";
+"use client"
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import React from "react";
+import Link from "next/link"
+import { usePathname } from "next/navigation"
+import React from "react"
 
 const Nav = () => {
-  const pathname = usePathname();
+  const pathname = usePathname()
 
   return (
     <nav className="space-x-4">
       <Link href="/" className={pathname === "/" ? "text-primary" : ""}>
-        Home
+        Inicio
       </Link>
       <Link
         href="/dashboard"
         className={pathname === "/dashboard" ? "text-primary" : ""}
       >
-        Dashboard
+        Postear
       </Link>
     </nav>
-  );
-};
+  )
+}
 
-export default Nav;
+export default Nav

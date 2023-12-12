@@ -13,7 +13,7 @@ const UserPosts = async () => {
   return (
     <ul className="grid gap-y-4">
       {posts.map((post) => (
-        <Post withDelete {...post} key={post.id} />
+        <Post withActions {...post} key={post.id} />
       ))}
     </ul>
   )

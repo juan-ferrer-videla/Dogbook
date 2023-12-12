@@ -1,4 +1,4 @@
-import FormPost from "@/components/FormPost"
+import { FormPost } from "@/components/FormPost"
 import { UserPosts } from "@/components/UserPosts"
 import { getServerSession } from "next-auth"
 import { redirect } from "next/navigation"

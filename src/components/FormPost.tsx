@@ -9,6 +9,15 @@ import { createPost } from "@/actions/post"
 import { useFormStatus } from "react-dom"
 import { RadioGroup, RadioGroupItem } from "./ui/radio-group"
 import { Spinner } from "./Spinner"
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select"
 
 const Submit = () => {
   const { pending } = useFormStatus()
@@ -26,7 +35,7 @@ const Submit = () => {
   )
 }
 
-const FormPost = () => {
+export const FormPost = () => {
   const formRef = useRef<HTMLFormElement>(null)
   const { data: session } = useSession()
   const email = session?.user?.email ?? ""
@@ -53,20 +62,19 @@ const FormPost = () => {
         <Label htmlFor="size" className="mb-2">
           Tamaño
         </Label>
-        <RadioGroup defaultValue="medium" name="size" id="size">
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="big" id="big" />
-            <Label htmlFor="big">Grande</Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="medium" id="medium" />
-            <Label htmlFor="medium">Mediano</Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="small" id="small" />
-            <Label htmlFor="small">Pequeño</Label>
-          </div>
-        </RadioGroup>
+        <Select name="size">
+          <SelectTrigger>
+            <SelectValue placeholder="Selecciona un tamaño" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectLabel className="sr-only">Tamaño</SelectLabel>
+              <SelectItem value="Grande">Grande</SelectItem>
+              <SelectItem value="Mediano">Mediano</SelectItem>
+              <SelectItem value="Pequeño">Pequeño</SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
       </div>
       <div className="grid w-full items-center gap-1.5">
         <Label htmlFor="vaccines">Vacunas</Label>
@@ -101,5 +109,3 @@ const FormPost = () => {
     </form>
   )
 }
-
-export default FormPost
