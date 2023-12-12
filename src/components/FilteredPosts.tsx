@@ -7,6 +7,8 @@ import { Input } from "./ui/input"
 import { Label } from "./ui/label"
 import { usePathname, useSearchParams, useRouter } from "next/navigation"
 import { useDebouncedCallback } from "@/hooks/useDebounce"
+import { Button } from "./ui/button"
+import { toast } from "./ui/use-toast"
 
 const FilteredPosts = ({ posts }: { posts: TPost[] }) => {
   const router = useRouter()
@@ -35,9 +37,11 @@ const FilteredPosts = ({ posts }: { posts: TPost[] }) => {
 
   return (
     <>
-      <div className="mb-2 max-w-sm">
-        <Label />
-        <Input onChange={handleChange} />
+      <div className="flex flex-wrap space-x-4">
+        <div className="mb-6 max-w-sm">
+          <Label>Filtros</Label>
+          <Input onChange={handleChange} />
+        </div>
       </div>
       <ul className="grid gap-6 lg:grid-cols-2">
         {posts

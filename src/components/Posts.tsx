@@ -21,6 +21,7 @@ const Post = ({
   user,
   vaccines,
   size,
+  createAt,
   withActions = false,
 }: TPost & { withActions?: boolean }) => {
   const defaultValues = {
@@ -64,6 +65,7 @@ const Post = ({
           {user && <p>Autor: {user}</p>}
           <p>Ubicación: {location}</p>
           <p>Contacto: {contact}</p>
+          <p>Fecha: {new Date(createAt).toLocaleDateString()}</p>
           {withActions && (
             <DeletePostButton id={id} imageId={image || undefined} />
           )}

@@ -18,6 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select"
+import { toast } from "./ui/use-toast"
 
 const Submit = () => {
   const { pending } = useFormStatus()
@@ -41,8 +42,18 @@ export const FormPost = () => {
   const email = session?.user?.email ?? ""
   const user = session?.user?.name ?? ""
   const handleAction = async (data: FormData) => {
-    await createPost(data)
-    formRef.current?.reset()
+    try {
+      await createPost(data)
+      toast({
+        description: "¡Tu post fue creado con exito!",
+      })
+      formRef.current?.reset()
+    } catch (error) {
+      toast({
+        description: "Ocurrió un error, vuelve a intentarlo mas tarde",
+        variant: "destructive",
+      })
+    }
   }
 
   return (

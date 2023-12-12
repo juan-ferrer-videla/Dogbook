@@ -4,6 +4,7 @@ import { deletePost } from "@/actions/post"
 import React, { useState } from "react"
 import { Button } from "./ui/button"
 import { Spinner } from "./Spinner"
+import { toast } from "./ui/use-toast"
 
 const DeletePostButton = ({
   id,
@@ -20,7 +21,18 @@ const DeletePostButton = ({
       disabled={pending}
       onClick={async () => {
         setPending(true)
-        await deletePost({ id, imageId })
+        try {
+          await deletePost({ id, imageId })
+          toast({
+            description: "Tu post fue eliminado con exito",
+            variant: "destructive",
+          })
+        } catch (error) {
+          toast({
+            description: "Ocurrió un error, vuelve a intentarlo mas tarde",
+            variant: "destructive",
+          })
+        }
         setPending(false)
       }}
     >

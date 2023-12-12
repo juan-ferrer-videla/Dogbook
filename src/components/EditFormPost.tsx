@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useRef } from "react"
+import React, { useRef, useState } from "react"
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
 import { Button } from "./ui/button"
@@ -26,6 +26,7 @@ import {
   SelectValue,
 } from "./ui/select"
 import { Post } from "@prisma/client"
+import { toast } from "./ui/use-toast"
 
 const Submit = () => {
   const { pending } = useFormStatus()
@@ -54,13 +55,26 @@ export const EditFormPost = ({
   image,
 }: Omit<Post, "createAt" | "email" | "user">) => {
   const formRef = useRef<HTMLFormElement>(null)
+  const [isOpen, setOpen] = useState(false)
   const handleAction = async (data: FormData) => {
-    await editPost(data)
-    formRef.current?.reset()
+    try {
+      await editPost(data)
+      toast({
+        description: "¡Tu post fue editado con exito!",
+      })
+      formRef.current?.reset()
+    } catch (error) {
+      toast({
+        description: "Ocurrió un error, vuelve a intentarlo mas tarde",
+        variant: "destructive",
+      })
+    } finally {
+      setOpen(false)
+    }
   }
 
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="outline">Editar</Button>
       </DialogTrigger>

@@ -4,6 +4,7 @@ import "./globals.css"
 import SessionProvider from "@/components/SessionProvider"
 import Header from "@/components/Header"
 import { ThemeProvider } from "@/components/ThemeProvider"
+import { Toaster } from "@/components/ui/toaster"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -40,6 +41,7 @@ export default async function RootLayout({
                 Juan Ferrer
               </a>
             </footer>
+            <Toaster />
           </ThemeProvider>
         </body>
       </SessionProvider>
