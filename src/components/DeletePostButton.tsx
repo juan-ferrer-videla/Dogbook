@@ -16,7 +16,6 @@ const DeletePostButton = ({
   const [pending, setPending] = useState(false)
   return (
     <Button
-      className="mt-4"
       variant={"destructive"}
       disabled={pending}
       onClick={async () => {

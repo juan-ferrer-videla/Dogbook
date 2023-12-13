@@ -36,25 +36,22 @@ const Post = ({
     vaccines,
     size,
   }
+
+  const day = new Date(createAt).getDate()
+  const month = new Date(createAt).getMonth() + 1
+  const year = new Date(createAt).getFullYear()
+
+  const date = `${day}/${month}/${year}`
   return (
     <li>
       <Card className="grid h-full">
-        <CardHeader className="flex-row justify-between">
-          <div className="flex items-center space-x-6">
-            {image ? (
-              <CldImage
-                src={image}
-                alt=""
-                sizes="30vw"
-                width={64}
-                height={64}
-              />
-            ) : (
-              <Image src={dogbook} alt="" sizes="30vw" width={64} height={64} />
-            )}
-            <CardTitle>{title}</CardTitle>
-          </div>
-          {withActions && <EditFormPost {...defaultValues} />}
+        <CardHeader className="flex-row items-center space-x-5">
+          {image ? (
+            <CldImage src={image} alt="" sizes="30vw" width={64} height={64} />
+          ) : (
+            <Image src={dogbook} alt="" sizes="30vw" width={64} height={64} />
+          )}
+          <CardTitle>{title}</CardTitle>
         </CardHeader>
         <CardContent>
           {vaccines && <p>Vacunas: {vaccines}</p>}
@@ -65,9 +62,12 @@ const Post = ({
           {user && <p>Autor: {user}</p>}
           <p>Ubicación: {location}</p>
           <p>Contacto: {contact}</p>
-          <p>Fecha: {new Date(createAt).toLocaleDateString()}</p>
+          <p>Fecha: {date}</p>
           {withActions && (
-            <DeletePostButton id={id} imageId={image || undefined} />
+            <div className="mt-4 flex justify-between">
+              <DeletePostButton id={id} imageId={image || undefined} />
+              <EditFormPost {...defaultValues} />
+            </div>
           )}
         </CardFooter>
       </Card>

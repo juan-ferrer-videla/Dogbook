@@ -11,7 +11,7 @@ const UserPosts = async () => {
     where: { email: session.user.email },
   })
   return (
-    <ul className="grid gap-y-4">
+    <ul className="grid gap-x-12 gap-y-6 lg:grid-cols-2">
       {posts.map((post) => (
         <Post withActions {...post} key={post.id} />
       ))}
