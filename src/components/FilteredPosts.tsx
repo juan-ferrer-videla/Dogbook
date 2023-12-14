@@ -7,18 +7,19 @@ import { useSearchParams } from "next/navigation"
 
 const FilteredPosts = ({ posts }: { posts: TPost[] }) => {
   const searchParams = useSearchParams()
-  const filter = searchParams.get("filter") ?? ""
+  const sizes = new Set(searchParams.getAll("size"))
+  const vaccines = new Set(searchParams.getAll("vaccines"))
+
+  const categorys = [sizes, vaccines]
 
   return (
     <>
       <ul className="grid gap-6 lg:grid-cols-2">
         {posts
-          .filter((post) =>
-            Object.values(post)
-              .join(" ")
-              .toLowerCase()
-              .includes(filter.toLowerCase())
-          )
+          .filter((post) => {
+            if (categorys.every((set) => set.size === 0)) return true
+            return sizes.has(post.size)
+          })
           .map((post) => (
             <Post {...post} key={post.id} />
           ))}

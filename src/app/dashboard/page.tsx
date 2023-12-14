@@ -11,7 +11,7 @@ const DashboardPage = async () => {
   return (
     <>
       <h2 className="mb-4 text-center text-3xl font-bold leading-tight tracking-tight sm:mb-8 md:mb-12 md:text-5xl lg:leading-[1.1]">
-        Dashboard
+        Administrador
       </h2>
       <div>
         <FormPost />

@@ -21,7 +21,7 @@ export default async function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <SessionProvider>
-        <body className={`${inter.className} min-h-screen`}>
+        <body className={`${inter.className} flex min-h-screen flex-col`}>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
@@ -29,7 +29,7 @@ export default async function RootLayout({
             disableTransitionOnChange
           >
             <Header />
-            <main className="container mx-auto">{children}</main>
+            <main className="container mx-auto grow">{children}</main>
             <footer className="mt-8 border-t border-t-muted py-8 text-center">
               Desarrollado por{" "}
               <a

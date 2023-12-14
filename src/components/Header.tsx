@@ -2,14 +2,17 @@ import React from "react"
 import AuthButton from "./AuthButton"
 import { ToggleTheme } from "./ToggleTheme"
 import Nav from "./Nav"
+import { Dog } from "lucide-react"
 
 const Header = () => {
   return (
-    <header className="py-4">
-      <div className="container mx-auto flex justify-between">
-        <h1>Perruno</h1>
+    <header className="sticky top-0 bg-background/80 py-4 backdrop-blur-md">
+      <div className="container mx-auto flex items-center justify-between">
+        <h1 className="sr-only">Perruno</h1>
+
+        <Dog />
         <Nav />
-        <div className="flex items-center gap-x-4">
+        <div className="flex items-center gap-x-2">
           <ToggleTheme />
           <AuthButton />
         </div>
