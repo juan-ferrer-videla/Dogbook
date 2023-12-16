@@ -11,9 +11,11 @@ export const FilterBadges = () => {
   const filters = [...size, ...vaccines]
 
   return (
-    <ul className="my-6 flex flex-wrap gap-4">
+    <ul className="flex flex-wrap gap-4 ">
       {filters.map((filter) => (
-        <Badge key={filter}>{filter}</Badge>
+        <Badge key={filter} className="flex items-center">
+          {filter}
+        </Badge>
       ))}
     </ul>
   )

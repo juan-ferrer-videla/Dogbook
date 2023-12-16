@@ -1,6 +1,7 @@
 "use client"
 
 import React, { useRef } from "react"
+
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
 import { Button } from "./ui/button"
@@ -19,6 +20,7 @@ import {
   SelectValue,
 } from "./ui/select"
 import { toast } from "./ui/use-toast"
+import { Textarea } from "./ui/textarea"
 
 const Submit = () => {
   const { pending } = useFormStatus()
@@ -70,7 +72,7 @@ export const FormPost = () => {
           <Label htmlFor="age">Edad</Label>
           <Input id="age" placeholder="6 meses" name="age" />
         </div>
-        <div className="grid w-full items-center gap-1.5">
+        <div className="grid w-full items-center ">
           <Label htmlFor="size" className="mb-2">
             Tamaño
           </Label>
@@ -89,17 +91,9 @@ export const FormPost = () => {
           </Select>
         </div>
         <div className="grid w-full items-center gap-1.5">
-          <Label htmlFor="vaccines">Vacunas</Label>
+          <Label htmlFor="phone">Contacto</Label>
           <Input
-            id="vaccines"
-            placeholder="Vacuna Polivalente"
-            name="vaccines"
-          />
-        </div>
-        <div className="grid w-full items-center gap-1.5">
-          <Label htmlFor="contact">Contacto</Label>
-          <Input
-            id="contact"
+            id="phone"
             type="number"
             placeholder="2610000000"
             name="contact"
@@ -118,6 +112,15 @@ export const FormPost = () => {
         <div className="grid w-full items-center gap-1.5">
           <Label htmlFor="image">Imagen</Label>
           <Input type="file" id="image" name="image" accept="image/*" />
+        </div>
+        <div className="grid w-full items-center gap-1.5">
+          <Label htmlFor="vaccines">Vacunas</Label>
+          <Textarea
+            id="vaccines"
+            placeholder="Vacuna Polivalente"
+            name="vaccines"
+            className="resize-none"
+          />
         </div>
         <input type="hidden" name="email" value={email} required />
         <input type="hidden" name="user" value={user} required />

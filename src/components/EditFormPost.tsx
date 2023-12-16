@@ -27,6 +27,7 @@ import {
 } from "./ui/select"
 import { Post } from "@prisma/client"
 import { toast } from "./ui/use-toast"
+import { Textarea } from "./ui/textarea"
 
 const Submit = () => {
   const { pending } = useFormStatus()
@@ -126,19 +127,10 @@ export const EditFormPost = ({
           </div>
 
           <div className="grid w-full items-center gap-1.5">
-            <Label htmlFor="vaccines">Vacunas</Label>
-            <Input
-              id="vaccines"
-              placeholder="Vacuna Polivalente"
-              name="vaccines"
-              defaultValue={vaccines}
-            />
-          </div>
-          <div className="grid w-full items-center gap-1.5">
-            <Label htmlFor="contact">Contacto</Label>
+            <Label htmlFor="phone">Contacto</Label>
             <Input
               defaultValue={contact}
-              id="contact"
+              id="phone"
               type="number"
               placeholder="2610000000"
               name="contact"
@@ -158,6 +150,15 @@ export const EditFormPost = ({
           <div className="grid w-full items-center gap-1.5">
             <Label htmlFor="image">Imagen</Label>
             <Input type="file" id="image" name="image" accept="image/*" />
+          </div>
+          <div className="grid w-full items-center gap-1.5">
+            <Label htmlFor="vaccines">Vacunas</Label>
+            <Textarea
+              id="vaccines"
+              placeholder="Vacuna Polivalente"
+              name="vaccines"
+              defaultValue={vaccines}
+            />
           </div>
           <input type="hidden" value={image} name="publicId" />
           <input type="hidden" value={id} name="id" />

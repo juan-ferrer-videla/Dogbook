@@ -14,13 +14,11 @@ module.exports = {
         DEFAULT: "1rem",
         md: "2rem",
       },
-      extends: {
-        screens: {
-          "2xl": "1400px",
-        },
-      },
     },
     extend: {
+      screens: {
+        "2xl": "1400px",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
