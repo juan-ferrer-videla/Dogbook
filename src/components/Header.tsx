@@ -1,16 +1,24 @@
+"use client"
+
 import React from "react"
 import AuthButton from "./AuthButton"
 import { ToggleTheme } from "./ToggleTheme"
 import Nav from "./Nav"
 import { Dog } from "lucide-react"
+import Link from "next/link"
+import { useSearchParams } from "next/navigation"
 
 const Header = () => {
+  const searchParams = useSearchParams()
+  const params = new URLSearchParams(searchParams)
+
   return (
     <header className="sticky top-0 bg-background/80 py-4 backdrop-blur-md">
       <div className="container mx-auto flex items-center justify-between">
         <h1 className="sr-only">Perruno</h1>
-
-        <Dog />
+        <Link href="/">
+          <Dog size={28} />
+        </Link>
         <Nav />
         <div className="flex items-center gap-x-2">
           <ToggleTheme />

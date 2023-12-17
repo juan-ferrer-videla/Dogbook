@@ -37,7 +37,7 @@ const AuthButton = () => {
             <span>{data.user.email}</span>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Link href="/dashboard">Dashboard</Link>
+            <Link href="/dashboard">Postea</Link>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={() => signOut({ callbackUrl: "/" })}>

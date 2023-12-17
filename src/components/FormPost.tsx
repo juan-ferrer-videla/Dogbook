@@ -8,7 +8,6 @@ import { Button } from "./ui/button"
 import { useSession } from "next-auth/react"
 import { createPost } from "@/actions/post"
 import { useFormStatus } from "react-dom"
-import { RadioGroup, RadioGroupItem } from "./ui/radio-group"
 import { Spinner } from "./Spinner"
 import {
   Select,
@@ -20,7 +19,8 @@ import {
   SelectValue,
 } from "./ui/select"
 import { toast } from "./ui/use-toast"
-import { Textarea } from "./ui/textarea"
+import { Checkbox } from "./ui/checkbox"
+import { vaccines } from "@/types"
 
 const Submit = () => {
   const { pending } = useFormStatus()
@@ -43,6 +43,8 @@ export const FormPost = () => {
   const { data: session } = useSession()
   const email = session?.user?.email ?? ""
   const user = session?.user?.name ?? ""
+  const { polivalente, polivalente2, polivalente_refuerzo, rabia } = vaccines
+
   const handleAction = async (data: FormData) => {
     try {
       await createPost(data)
@@ -91,11 +93,10 @@ export const FormPost = () => {
           </Select>
         </div>
         <div className="grid w-full items-center gap-1.5">
-          <Label htmlFor="phone">Contacto</Label>
+          <Label htmlFor="contact">Contacto</Label>
           <Input
-            id="phone"
-            type="number"
-            placeholder="2610000000"
+            id="contact"
+            placeholder="numero de telefono, email, instagram..."
             name="contact"
             required
           />
@@ -113,15 +114,62 @@ export const FormPost = () => {
           <Label htmlFor="image">Imagen</Label>
           <Input type="file" id="image" name="image" accept="image/*" />
         </div>
-        <div className="grid w-full items-center gap-1.5">
-          <Label htmlFor="vaccines">Vacunas</Label>
-          <Textarea
-            id="vaccines"
-            placeholder="Vacuna Polivalente"
-            name="vaccines"
-            className="resize-none"
-          />
-        </div>
+
+        <fieldset>
+          <legend className="mb-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+            Vacunas
+          </legend>
+          <div className="grid gap-y-2">
+            <div className="flex items-center space-x-2">
+              <Checkbox
+                id="polivalente"
+                name="polivalente"
+                value={polivalente}
+              />
+              <label
+                htmlFor="polivalente"
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              >
+                {polivalente}
+              </label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Checkbox
+                id="polivalente2"
+                name="polivalente2"
+                value={polivalente2}
+              />
+              <label
+                htmlFor="polivalente2"
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              >
+                {polivalente2}
+              </label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Checkbox id="rabia" name="rabia" value={rabia} />
+              <label
+                htmlFor="rabia"
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              >
+                {rabia}
+              </label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Checkbox
+                id="polivalente_refuerzo"
+                name="polivalente_refuerzo"
+                value={polivalente_refuerzo}
+              />
+              <label
+                htmlFor="polivalente_refuerzo"
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              >
+                {polivalente_refuerzo}
+              </label>
+            </div>
+          </div>
+        </fieldset>
         <input type="hidden" name="email" value={email} required />
         <input type="hidden" name="user" value={user} required />
       </div>

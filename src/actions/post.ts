@@ -25,11 +25,14 @@ const getSignature = () => {
 
 const postSchema = z.object({
   title: z.string(),
-  size: z.string(),
-  vaccines: z.string(),
-  age: z.string(),
-  contact: z.string(),
   location: z.string(),
+  contact: z.string(),
+  size: z.string().optional(),
+  age: z.string().optional(),
+  polivalente: z.string().optional(),
+  polivalente2: z.string().optional(),
+  rabia: z.string().optional(),
+  polivalente_refuerzo: z.string().optional(),
   email: z.string(),
   user: z.string(),
   image: z.any(),
@@ -40,7 +43,10 @@ const editSchema = z.object({
   id: z.string(),
   location: z.string(),
   size: z.string().optional(),
-  vaccines: z.string().optional(),
+  polivalente: z.string().optional(),
+  polivalente2: z.string().optional(),
+  rabia: z.string().optional(),
+  polivalente_refuerzo: z.string().optional(),
   age: z.string().optional(),
   contact: z.string().optional(),
   image: z.any(),
@@ -86,8 +92,8 @@ const uploadImage = async ({
 }
 
 export const createPost = async (data: FormData) => {
-  const postData = postSchema.parse(Object.fromEntries(data))
-  const file = postData.image as File
+  const { image, ...postData } = postSchema.parse(Object.fromEntries(data))
+  const file = image as File
   let publicId = ""
 
   if (file.size) {
@@ -99,7 +105,6 @@ export const createPost = async (data: FormData) => {
   await prisma.post.create({
     data: {
       ...postData,
-      contact: Number(postData.contact),
       createAt: Date.now(),
       image: publicId,
     },
@@ -112,8 +117,6 @@ export const editPost = async (data: FormData) => {
   const file = postData.image as File
   let publicId = postData.publicId
 
-  console.log(postData)
-
   if (file.size) {
     cloudinary.uploader.destroy(publicId)
     const { signature, timestamp } = getSignature()
@@ -125,16 +128,14 @@ export const editPost = async (data: FormData) => {
 
   const { id, publicId: imageId, ...mutableData } = postData
 
-  const updated = await prisma.post.update({
+  await prisma.post.update({
     where: { id: postData.id },
     data: {
       ...mutableData,
-      contact: Number(postData.contact),
       createAt: Date.now(),
       image: publicId,
     },
   })
-  console.log(updated)
   revalidatePath("/")
 }
 

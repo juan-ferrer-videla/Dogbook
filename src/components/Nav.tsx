@@ -16,7 +16,7 @@ const Nav = () => {
         href="/dashboard"
         className={pathname === "/dashboard" ? "text-primary" : ""}
       >
-        Postear
+        Postea
       </Link>
     </nav>
   )

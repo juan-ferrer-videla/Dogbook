@@ -27,7 +27,8 @@ import {
 } from "./ui/select"
 import { Post } from "@prisma/client"
 import { toast } from "./ui/use-toast"
-import { Textarea } from "./ui/textarea"
+import { Checkbox } from "./ui/checkbox"
+import { vaccines } from "@/types"
 
 const Submit = () => {
   const { pending } = useFormStatus()
@@ -51,12 +52,16 @@ export const EditFormPost = ({
   location,
   contact,
   size,
-  vaccines,
   age,
   image,
+  rabia: defaultRabia,
+  polivalente: defaultPolivalente,
+  polivalente2: defaultPolivalente2,
+  polivalente_refuerzo: defaultPolivalenteRefuerzo,
 }: Omit<Post, "createAt" | "email" | "user">) => {
   const formRef = useRef<HTMLFormElement>(null)
   const [isOpen, setOpen] = useState(false)
+  const { polivalente, polivalente2, polivalente_refuerzo, rabia } = vaccines
   const handleAction = async (data: FormData) => {
     try {
       await editPost(data)
@@ -127,12 +132,11 @@ export const EditFormPost = ({
           </div>
 
           <div className="grid w-full items-center gap-1.5">
-            <Label htmlFor="phone">Contacto</Label>
+            <Label htmlFor="contact">Contacto</Label>
             <Input
               defaultValue={contact}
-              id="phone"
-              type="number"
-              placeholder="2610000000"
+              id="contact"
+              placeholder="numero de telefono, email, instagram..."
               name="contact"
               required
             />
@@ -151,15 +155,69 @@ export const EditFormPost = ({
             <Label htmlFor="image">Imagen</Label>
             <Input type="file" id="image" name="image" accept="image/*" />
           </div>
-          <div className="grid w-full items-center gap-1.5">
-            <Label htmlFor="vaccines">Vacunas</Label>
-            <Textarea
-              id="vaccines"
-              placeholder="Vacuna Polivalente"
-              name="vaccines"
-              defaultValue={vaccines}
-            />
-          </div>
+          <fieldset>
+            <legend className="mb-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
+              Vacunas
+            </legend>
+            <div className="grid gap-y-2">
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="polivalente"
+                  name="polivalente"
+                  value={polivalente}
+                  defaultChecked={!!defaultPolivalente}
+                />
+                <label
+                  htmlFor="polivalente"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  1era dosis Polivalente (sextuple)
+                </label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  defaultChecked={!!defaultPolivalente2}
+                  id="polivalente2"
+                  name="polivalente2"
+                  value={polivalente2}
+                />
+                <label
+                  htmlFor="polivalente2"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  2da dosis Polivalente
+                </label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="rabia"
+                  name="rabia"
+                  value={"rabia"}
+                  defaultChecked={!!defaultRabia}
+                />
+                <label
+                  htmlFor="rabia"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  Rabia
+                </label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  defaultChecked={!!defaultPolivalenteRefuerzo}
+                  id="polivalente_refuerzo"
+                  name="polivalente_refuerzo"
+                  value={polivalente_refuerzo}
+                />
+                <label
+                  htmlFor="polivalente_refuerzo"
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                  Refuerzo polivalente
+                </label>
+              </div>
+            </div>
+          </fieldset>
           <input type="hidden" value={image} name="publicId" />
           <input type="hidden" value={id} name="id" />
 

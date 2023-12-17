@@ -19,7 +19,10 @@ const Post = ({
   image,
   age,
   user,
-  vaccines,
+  polivalente,
+  polivalente2,
+  polivalente_refuerzo,
+  rabia,
   size,
   createAt,
   withActions = false,
@@ -30,16 +33,24 @@ const Post = ({
     email,
     location,
     contact,
+    polivalente,
+    polivalente2,
+    rabia,
+    polivalente_refuerzo,
     image,
     age,
     user,
-    vaccines,
     size,
   }
 
   const day = new Date(createAt).getDate()
   const month = new Date(createAt).getMonth() + 1
   const year = new Date(createAt).getFullYear()
+  const vaccines: string[] = []
+  if (polivalente) vaccines.push(polivalente)
+  if (polivalente2) vaccines.push(polivalente2)
+  if (polivalente_refuerzo) vaccines.push(polivalente_refuerzo)
+  if (rabia) vaccines.push(rabia)
 
   const date = `${day}/${month}/${year}`
   return (
@@ -53,12 +64,29 @@ const Post = ({
           )}
           <CardTitle>{title}</CardTitle>
         </CardHeader>
-        <CardContent>
-          {vaccines && <p>Vacunas: {vaccines}</p>}
-          {size && <p>Tamaño: {size}</p>}
-          {age && <p>Edad: {age}</p>}
+        <CardContent className="grid gap-y-1">
+          {vaccines.length && (
+            <div>
+              <strong className="font-medium">Vacunas:</strong>{" "}
+              <ul className="list-inside list-disc">
+                {vaccines.map((vaccine) => (
+                  <li key={vaccine}>{vaccine}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {size && (
+            <p>
+              <strong className="font-medium">Tamaño:</strong> {size}
+            </p>
+          )}
+          {age && (
+            <p>
+              <strong className="font-medium">Edad:</strong> {age}
+            </p>
+          )}
         </CardContent>
-        <CardFooter className="grid self-end text-muted-foreground">
+        <CardFooter className="grid gap-y-1 self-end text-muted-foreground">
           {user && <p>Autor: {user}</p>}
           <p>Ubicación: {location}</p>
           <p>Contacto: {contact}</p>

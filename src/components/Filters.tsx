@@ -13,16 +13,13 @@ import { SlidersHorizontal } from "lucide-react"
 import { Checkbox } from "./ui/checkbox"
 import { useQuery } from "@/hooks/useQuery"
 import { useSearchParams } from "next/navigation"
+import { sizes, vaccines } from "@/types"
 
 export const Filters = () => {
   const searchParams = useSearchParams()
   const { createQueryString } = useQuery()
 
-  const sizes = {
-    big: "Grande",
-    medium: "Mediano",
-    small: "Pequeño",
-  }
+  const { polivalente, polivalente2, polivalente_refuerzo, rabia } = vaccines
   const { big, medium, small } = sizes
 
   const handeCheckChange =
@@ -93,6 +90,67 @@ export const Filters = () => {
                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               >
                 {small}
+              </label>
+            </div>
+          </div>
+          <div className="grid items-center gap-2">
+            <h3 className="font-medium">Vacunas</h3>
+            <div className="flex items-center space-x-2">
+              <Checkbox
+                id="polivalente"
+                onCheckedChange={handeCheckChange("vaccines", polivalente)}
+                defaultChecked={handleDefaultCheck("vaccines", polivalente)}
+              />
+              <label
+                htmlFor="polivalente"
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              >
+                {polivalente}
+              </label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Checkbox
+                id="polivalente2"
+                onCheckedChange={handeCheckChange("vaccines", polivalente2)}
+                defaultChecked={handleDefaultCheck("vaccines", polivalente2)}
+              />
+              <label
+                htmlFor="polivalente2"
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              >
+                {polivalente2}
+              </label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Checkbox
+                id="rabia"
+                onCheckedChange={handeCheckChange("vaccines", rabia)}
+                defaultChecked={handleDefaultCheck("vaccines", rabia)}
+              />
+              <label
+                htmlFor="rabia"
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              >
+                {rabia}
+              </label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <Checkbox
+                id="polivalente_refuerzo"
+                onCheckedChange={handeCheckChange(
+                  "vaccines",
+                  polivalente_refuerzo
+                )}
+                defaultChecked={handleDefaultCheck(
+                  "vaccines",
+                  polivalente_refuerzo
+                )}
+              />
+              <label
+                htmlFor="polivalente_refuerzo"
+                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              >
+                {polivalente_refuerzo}
               </label>
             </div>
           </div>
