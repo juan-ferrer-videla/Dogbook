@@ -35,7 +35,7 @@ const postSchema = z.object({
   polivalente_refuerzo: z.string().optional(),
   email: z.string(),
   user: z.string(),
-  image: z.any(),
+  image: z.unknown(),
 })
 
 const editSchema = z.object({
@@ -49,7 +49,7 @@ const editSchema = z.object({
   polivalente_refuerzo: z.string().optional(),
   age: z.string().optional(),
   contact: z.string().optional(),
-  image: z.any(),
+  image: z.unknown(),
   publicId: z.string(),
 })
 
