@@ -104,8 +104,8 @@ const Post = ({
 }
 
 const Posts = async () => {
-  noStore()
-  const posts = await prisma.post.findMany()
+  /*   noStore()
+   */ const posts = await prisma.post.findMany()
   return <FilteredPosts posts={posts} />
 }
 

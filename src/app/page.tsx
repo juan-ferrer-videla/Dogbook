@@ -3,6 +3,7 @@ import { PostSkeletons } from "@/components/PostSkeletons"
 import { Posts } from "@/components/Posts"
 import { Suspense } from "react"
 import { Filters } from "@/components/Filters"
+import { Pagination } from "@/components/Pagination"
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
         <Filters />
         <FilterBadges />
       </div>
+      <Pagination />
       <Suspense fallback={<PostSkeletons />}>
         <Posts />
       </Suspense>

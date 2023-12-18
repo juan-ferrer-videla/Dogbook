@@ -16,21 +16,26 @@ export const useQuery = () => {
     }: {
       name: string
       value: string
-      action: "append" | "delete"
+      action: "append" | "delete" | "set"
     }) => {
       const params = new URLSearchParams(searchParams)
-      if (action === "append") {
-        params.append(name, value)
-      } else {
-        params.delete(name, value)
-      }
 
+      params[action](name, value)
       router.replace(pathname + "?" + params.toString())
     },
     [searchParams, router, pathname]
   )
 
+  const getQuery = useCallback(
+    (name: string) => {
+      const params = new URLSearchParams(searchParams)
+      return params.get(name)
+    },
+    [searchParams]
+  )
+
   return {
     createQueryString,
+    getQuery,
   }
 }
