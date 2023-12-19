@@ -3,9 +3,14 @@ import { PostSkeletons } from "@/components/PostSkeletons"
 import { Posts } from "@/components/Posts"
 import { Suspense } from "react"
 import { Filters } from "@/components/Filters"
-import { Pagination } from "@/components/Pagination"
+import { Pagination } from "@/components/pagination"
 
-export default function Home() {
+export default function Home({
+  searchParams,
+}: {
+  searchParams: Record<string, string | undefined>
+}) {
+  const page = searchParams.page ? Number(searchParams.page) : 1
   return (
     <>
       <h2 className="mb-4 text-center text-3xl font-bold leading-tight tracking-tight md:text-5xl lg:leading-[1.1]">
@@ -18,9 +23,9 @@ export default function Home() {
         <Filters />
         <FilterBadges />
       </div>
-      <Pagination />
+      <Pagination searchParams={searchParams} />
       <Suspense fallback={<PostSkeletons />}>
-        <Posts />
+        <Posts searchParams={searchParams} />
       </Suspense>
     </>
   )

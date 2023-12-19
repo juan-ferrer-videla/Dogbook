@@ -9,6 +9,8 @@ import Image from "next/image"
 import dogbook from "@/assets/dogbook.png"
 import { EditFormPost } from "./EditFormPost"
 import type { Post as TPost } from "@prisma/client"
+import { type VaccinesKeys, postsPerPage, vaccines } from "@/types"
+import type { Post } from "@prisma/client"
 
 const Post = ({
   id,
@@ -46,11 +48,11 @@ const Post = ({
   const day = new Date(createAt).getDate()
   const month = new Date(createAt).getMonth() + 1
   const year = new Date(createAt).getFullYear()
-  const vaccines: string[] = []
-  if (polivalente) vaccines.push(polivalente)
-  if (polivalente2) vaccines.push(polivalente2)
-  if (polivalente_refuerzo) vaccines.push(polivalente_refuerzo)
-  if (rabia) vaccines.push(rabia)
+  const vaccinesArr: string[] = []
+  if (polivalente) vaccinesArr.push(vaccines.polivalente)
+  if (polivalente2) vaccinesArr.push(vaccines.polivalente2)
+  if (polivalente_refuerzo) vaccinesArr.push(vaccines.polivalente_refuerzo)
+  if (rabia) vaccinesArr.push(vaccines.rabia)
 
   const date = `${day}/${month}/${year}`
   return (
@@ -65,11 +67,11 @@ const Post = ({
           <CardTitle>{title}</CardTitle>
         </CardHeader>
         <CardContent className="grid gap-y-1">
-          {vaccines.length && (
+          {vaccinesArr.length && (
             <div>
               <strong className="font-medium">Vacunas:</strong>{" "}
               <ul className="list-inside list-disc">
-                {vaccines.map((vaccine) => (
+                {vaccinesArr.map((vaccine) => (
                   <li key={vaccine}>{vaccine}</li>
                 ))}
               </ul>
@@ -103,9 +105,64 @@ const Post = ({
   )
 }
 
-const Posts = async () => {
+const Posts = async ({
+  searchParams,
+}: {
+  searchParams: Record<string, string | string[] | undefined>
+}) => {
   noStore()
-  const posts = await prisma.post.findMany()
+  const page = searchParams.page ? Number(searchParams.page) : 1
+
+  const createQueryFilter = (filterQuery: string) => {
+    const filter = searchParams[filterQuery]
+    if (filter === undefined) return {}
+    if (typeof filter === "string") return { [filterQuery]: filter }
+    const filters = filter.map((filter) => ({ [filterQuery]: filter }))
+    return { OR: filters }
+  }
+  const polivalente = { polivalente: !!searchParams.polivalente }
+  const rabia = { rabia: !!searchParams.rabia }
+  const polivalente2 = { polivalente2: !!searchParams.polivalente2 }
+  const polivalente_refuerzo = {
+    polivalente_refuerzo: !!searchParams.polivalente_refuerzo,
+  }
+  const vaccinesArr = [
+    polivalente,
+    rabia,
+    polivalente2,
+    polivalente_refuerzo,
+  ].reduce(
+    (acc, vaccine) => {
+      if (Object.values(vaccine)[0]) acc.OR.push(vaccine)
+      return acc
+    },
+    { OR: [] } as {
+      OR: (
+        | {
+            polivalente: boolean
+          }
+        | {
+            rabia: boolean
+          }
+        | {
+            polivalente2: boolean
+          }
+        | {
+            polivalente_refuerzo: boolean
+          }
+      )[]
+    }
+  )
+
+  const sizeQuery = createQueryFilter("size")
+
+  const posts = await prisma.post.findMany({
+    where: {
+      AND: [sizeQuery, { OR: [vaccinesArr] }],
+    },
+    take: postsPerPage,
+    skip: (page - 1) * postsPerPage,
+  })
   return <FilteredPosts posts={posts} />
 }
 

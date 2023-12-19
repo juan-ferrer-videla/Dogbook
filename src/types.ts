@@ -1,3 +1,5 @@
+import type { Post } from "@prisma/client"
+
 export const vaccines = {
   polivalente: "1era dosis Polivalente (sextuple)",
   polivalente2: "2da dosis Polivalente",
@@ -5,11 +7,19 @@ export const vaccines = {
   rabia: "rabia",
 } as const
 
-type ValueOf<T> = T[keyof T]
+export type ValueOf<T> = T[keyof T]
 export type Vaccines = ValueOf<typeof vaccines>
+export type VaccinesKeys = Extract<
+  keyof Post,
+  "polivalente" | "polivalente2" | "polivalente_refuerzo" | "rabia"
+>
 
 export const sizes = {
   big: "Grande",
   medium: "Mediano",
   small: "Pequeño",
 } as const
+
+export type Sizes = ValueOf<typeof sizes>
+
+export const postsPerPage = 8

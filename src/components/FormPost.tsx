@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useRef } from "react"
+import React, { useId, useRef } from "react"
 
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
@@ -39,6 +39,11 @@ const Submit = () => {
 }
 
 export const FormPost = () => {
+  const polivalenteId = useId()
+  const polivalente2Id = useId()
+  const rabiaId = useId()
+  const polivalenteRefuerzoId = useId()
+
   const formRef = useRef<HTMLFormElement>(null)
   const { data: session } = useSession()
   const email = session?.user?.email ?? ""
@@ -121,35 +126,27 @@ export const FormPost = () => {
           </legend>
           <div className="grid gap-y-2">
             <div className="flex items-center space-x-2">
-              <Checkbox
-                id="polivalente"
-                name="polivalente"
-                value={polivalente}
-              />
+              <Checkbox id={polivalenteId} name="polivalente" />
               <label
-                htmlFor="polivalente"
+                htmlFor={polivalenteId}
                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               >
                 {polivalente}
               </label>
             </div>
             <div className="flex items-center space-x-2">
-              <Checkbox
-                id="polivalente2"
-                name="polivalente2"
-                value={polivalente2}
-              />
+              <Checkbox id={polivalente2Id} name="polivalente2" />
               <label
-                htmlFor="polivalente2"
+                htmlFor={polivalente2Id}
                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               >
                 {polivalente2}
               </label>
             </div>
             <div className="flex items-center space-x-2">
-              <Checkbox id="rabia" name="rabia" value={rabia} />
+              <Checkbox id={rabiaId} name="rabia" value={rabia} />
               <label
-                htmlFor="rabia"
+                htmlFor={rabiaId}
                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               >
                 {rabia}
@@ -157,12 +154,11 @@ export const FormPost = () => {
             </div>
             <div className="flex items-center space-x-2">
               <Checkbox
-                id="polivalente_refuerzo"
+                id={polivalenteRefuerzoId}
                 name="polivalente_refuerzo"
-                value={polivalente_refuerzo}
               />
               <label
-                htmlFor="polivalente_refuerzo"
+                htmlFor={polivalenteRefuerzoId}
                 className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
               >
                 {polivalente_refuerzo}

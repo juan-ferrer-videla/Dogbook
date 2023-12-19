@@ -98,8 +98,8 @@ export const Filters = () => {
             <div className="flex items-center space-x-2">
               <Checkbox
                 id="polivalente"
-                onCheckedChange={handeCheckChange("vaccines", polivalente)}
-                defaultChecked={handleDefaultCheck("vaccines", polivalente)}
+                onCheckedChange={handeCheckChange("polivalente", "true")}
+                defaultChecked={handleDefaultCheck("polivalente", "true")}
               />
               <label
                 htmlFor="polivalente"
@@ -111,8 +111,8 @@ export const Filters = () => {
             <div className="flex items-center space-x-2">
               <Checkbox
                 id="polivalente2"
-                onCheckedChange={handeCheckChange("vaccines", polivalente2)}
-                defaultChecked={handleDefaultCheck("vaccines", polivalente2)}
+                onCheckedChange={handeCheckChange("polivalente2", "true")}
+                defaultChecked={handleDefaultCheck("polivalente2", "true")}
               />
               <label
                 htmlFor="polivalente2"
@@ -124,8 +124,8 @@ export const Filters = () => {
             <div className="flex items-center space-x-2">
               <Checkbox
                 id="rabia"
-                onCheckedChange={handeCheckChange("vaccines", rabia)}
-                defaultChecked={handleDefaultCheck("vaccines", rabia)}
+                onCheckedChange={handeCheckChange("rabia", "true")}
+                defaultChecked={handleDefaultCheck("rabia", "true")}
               />
               <label
                 htmlFor="rabia"
@@ -138,12 +138,12 @@ export const Filters = () => {
               <Checkbox
                 id="polivalente_refuerzo"
                 onCheckedChange={handeCheckChange(
-                  "vaccines",
-                  polivalente_refuerzo
+                  "polivalente_refuerzo",
+                  "true"
                 )}
                 defaultChecked={handleDefaultCheck(
-                  "vaccines",
-                  polivalente_refuerzo
+                  "polivalente_refuerzo",
+                  "true"
                 )}
               />
               <label

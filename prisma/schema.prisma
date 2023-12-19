@@ -14,10 +14,10 @@ model Post {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   title String
   size String @default("")
-  polivalente String @default("")
-  polivalente2 String @default("")
-  polivalente_refuerzo String @default("")
-  rabia String @default("")
+  polivalente Boolean @default(false)
+  polivalente2 Boolean @default(false)
+  polivalente_refuerzo Boolean @default(false)
+  rabia Boolean @default(false)
   age String @default("")
   createAt Int
   location String

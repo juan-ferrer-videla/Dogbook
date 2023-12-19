@@ -92,7 +92,18 @@ const uploadImage = async ({
 }
 
 export const createPost = async (data: FormData) => {
-  const { image, ...postData } = postSchema.parse(Object.fromEntries(data))
+  const session = await getServerSession()
+  const email = session?.user?.email
+  if (!email) redirect("/api/auth/signin")
+
+  const {
+    image,
+    polivalente2,
+    polivalente,
+    polivalente_refuerzo,
+    rabia,
+    ...postData
+  } = postSchema.parse(Object.fromEntries(data))
   const file = image as File
   let publicId = ""
 
@@ -104,6 +115,10 @@ export const createPost = async (data: FormData) => {
 
   await prisma.post.create({
     data: {
+      rabia: !!rabia,
+      polivalente: !!polivalente,
+      polivalente2: !!polivalente2,
+      polivalente_refuerzo: !!polivalente_refuerzo,
       ...postData,
       createAt: Date.now(),
       image: publicId,
@@ -113,6 +128,10 @@ export const createPost = async (data: FormData) => {
 }
 
 export const editPost = async (data: FormData) => {
+  const session = await getServerSession()
+  const email = session?.user?.email
+  if (!email) redirect("/api/auth/signin")
+
   const postData = editSchema.parse(Object.fromEntries(data))
   const file = postData.image as File
   let publicId = postData.publicId
@@ -126,7 +145,15 @@ export const editPost = async (data: FormData) => {
     }
   }
 
-  const { id, publicId: imageId, ...mutableData } = postData
+  const {
+    id,
+    publicId: imageId,
+    polivalente2,
+    polivalente,
+    polivalente_refuerzo,
+    rabia,
+    ...mutableData
+  } = postData
 
   await prisma.post.update({
     where: { id: postData.id },
@@ -134,6 +161,10 @@ export const editPost = async (data: FormData) => {
       ...mutableData,
       createAt: Date.now(),
       image: publicId,
+      rabia: !!rabia,
+      polivalente: !!polivalente,
+      polivalente2: !!polivalente2,
+      polivalente_refuerzo: !!polivalente_refuerzo,
     },
   })
   revalidatePath("/")
@@ -148,20 +179,17 @@ export const deletePost = async ({
 }) => {
   const session = await getServerSession()
   const email = session?.user?.email
+  if (!email) redirect("/api/auth/signin")
 
-  if (email) {
-    await prisma.post.delete({
-      where: {
-        id,
-        email,
-      },
-    })
-    if (imageId) {
-      await cloudinary.uploader.destroy(imageId)
-    }
-
-    revalidatePath("/")
-  } else {
-    redirect("/api/auth/signin")
+  await prisma.post.delete({
+    where: {
+      id,
+      email,
+    },
+  })
+  if (imageId) {
+    await cloudinary.uploader.destroy(imageId)
   }
+
+  revalidatePath("/")
 }
