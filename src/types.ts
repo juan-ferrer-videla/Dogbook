@@ -13,6 +13,9 @@ export type VaccinesKeys = Extract<
   keyof Post,
   "polivalente" | "polivalente2" | "polivalente_refuerzo" | "rabia"
 >
+export type SplitKeys<T extends Record<string, unknown>> = {
+  [K in keyof T]: Record<K, T[K]>
+}[keyof T]
 
 export const sizes = {
   big: "Grande",
@@ -22,4 +25,4 @@ export const sizes = {
 
 export type Sizes = ValueOf<typeof sizes>
 
-export const postsPerPage = 8
+export const postsPerPage = 1

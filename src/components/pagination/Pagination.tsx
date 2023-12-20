@@ -12,17 +12,23 @@ export const Pagination = async ({
 }) => {
   noStore()
   const max = await prisma.post.count()
+  const pages = Math.ceil(max / postsPerPage)
+
   const page = searchParams.page ? Number(searchParams.page) : 1
 
   return (
     <div>
-      <ul>
+      <ul className="flex items-center gap-x-2 p-2">
         <li>
           <Back />
         </li>
-        <li>
-          <PageButton number={1} />
-        </li>
+        {Array(pages)
+          .fill(null)
+          .map((_, index) => (
+            <li key={index}>
+              <PageButton number={index + 1} />
+            </li>
+          ))}
 
         <li>
           <Foward disabled={page * postsPerPage >= max} />

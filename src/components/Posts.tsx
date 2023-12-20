@@ -9,8 +9,12 @@ import Image from "next/image"
 import dogbook from "@/assets/dogbook.png"
 import { EditFormPost } from "./EditFormPost"
 import type { Post as TPost } from "@prisma/client"
-import { type VaccinesKeys, postsPerPage, vaccines } from "@/types"
-import type { Post } from "@prisma/client"
+import {
+  type VaccinesKeys,
+  postsPerPage,
+  vaccines,
+  type SplitKeys,
+} from "@/types"
 
 const Post = ({
   id,
@@ -137,20 +141,7 @@ const Posts = async ({
       return acc
     },
     { OR: [] } as {
-      OR: (
-        | {
-            polivalente: boolean
-          }
-        | {
-            rabia: boolean
-          }
-        | {
-            polivalente2: boolean
-          }
-        | {
-            polivalente_refuerzo: boolean
-          }
-      )[]
+      OR: SplitKeys<Record<VaccinesKeys, boolean>>[]
     }
   )
 
