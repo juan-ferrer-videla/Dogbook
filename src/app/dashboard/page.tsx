@@ -1,5 +1,5 @@
-import { FormPost } from "@/components/FormPost"
-import { UserPosts } from "@/components/UserPosts"
+import { CreateForm } from "@/components/post"
+import { UserPosts } from "@/components/post/UserPosts"
 import { getServerSession } from "next-auth"
 import { redirect } from "next/navigation"
 import React from "react"
@@ -14,7 +14,7 @@ const DashboardPage = async () => {
         Administrador
       </h2>
       <div>
-        <FormPost />
+        <CreateForm />
         <div>
           <h3 className="mb-4 text-xl font-semibold sm:text-2xl md:text-3xl">
             Tus Posts!

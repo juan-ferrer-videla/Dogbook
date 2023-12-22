@@ -2,7 +2,7 @@
 
 import { useSearchParams } from "next/navigation"
 import React from "react"
-import { Badge } from "./ui/badge"
+import { Badge } from "../ui/badge"
 
 export const FilterBadges = () => {
   const searchParams = useSearchParams()

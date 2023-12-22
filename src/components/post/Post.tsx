@@ -1,23 +1,19 @@
-import React from "react"
-import prisma from "../lib/prisma"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "./ui/card"
-import { CldImage } from "@/components/CldImage"
-import { unstable_noStore as noStore } from "next/cache"
-import DeletePostButton from "./DeletePostButton"
-import FilteredPosts from "./FilteredPosts"
+import { CldImage } from "@/components/post/CldImage"
 import Image from "next/image"
 import dogbook from "@/assets/dogbook.png"
-import { EditFormPost } from "./EditFormPost"
 import type { Post as TPost } from "@prisma/client"
+import { vaccines } from "@/types"
 import {
-  type VaccinesKeys,
-  postsPerPage,
-  vaccines,
-  type SplitKeys,
-} from "@/types"
-import { Pagination } from "./pagination"
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import { EditPost } from "./EditPost"
+import { DeletePost } from "./DeletePost"
 
-const Post = ({
+export const Post = ({
   id,
   title,
   email,
@@ -100,8 +96,8 @@ const Post = ({
           <p>Fecha: {date}</p>
           {withActions && (
             <div className="mt-4 flex justify-between">
-              <DeletePostButton id={id} imageId={image || undefined} />
-              <EditFormPost {...defaultValues} />
+              <DeletePost id={id} imageId={image || undefined} />
+              <EditPost {...defaultValues} />
             </div>
           )}
         </CardFooter>
@@ -109,64 +105,3 @@ const Post = ({
     </li>
   )
 }
-
-const Posts = async ({
-  searchParams,
-}: {
-  searchParams: Record<string, string | string[] | undefined>
-}) => {
-  noStore()
-  const page = searchParams.page ? Number(searchParams.page) : 1
-
-  const createQueryFilter = (filterQuery: string) => {
-    const filter = searchParams[filterQuery]
-    if (filter === undefined) return {}
-    if (typeof filter === "string") return { [filterQuery]: filter }
-    const filters = filter.map((filter) => ({ [filterQuery]: filter }))
-    return { OR: filters }
-  }
-  const polivalente = { polivalente: !!searchParams.polivalente }
-  const rabia = { rabia: !!searchParams.rabia }
-  const polivalente2 = { polivalente2: !!searchParams.polivalente2 }
-  const polivalente_refuerzo = {
-    polivalente_refuerzo: !!searchParams.polivalente_refuerzo,
-  }
-  const vaccinesArr = [
-    polivalente,
-    rabia,
-    polivalente2,
-    polivalente_refuerzo,
-  ].reduce(
-    (acc, vaccine) => {
-      if (Object.values(vaccine)[0]) acc.OR.push(vaccine)
-      return acc
-    },
-    { OR: [] } as {
-      OR: SplitKeys<Record<VaccinesKeys, boolean>>[]
-    }
-  )
-
-  const sizeQuery = createQueryFilter("size")
-
-  const postsCount = await prisma.post.count({
-    where: {
-      AND: [sizeQuery, { OR: [vaccinesArr] }],
-    },
-  })
-
-  const posts = await prisma.post.findMany({
-    where: {
-      AND: [sizeQuery, { OR: [vaccinesArr] }],
-    },
-    take: postsPerPage,
-    skip: (page - 1) * postsPerPage,
-  })
-  return (
-    <>
-      <FilteredPosts posts={posts} />
-      <Pagination postsCount={postsCount} />
-    </>
-  )
-}
-
-export { Posts, Post }

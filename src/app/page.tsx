@@ -1,8 +1,8 @@
-import { FilterBadges } from "@/components/FilterBadges"
+import { FilterBadges } from "@/components/post/FilterBadges"
 import { PostSkeletons } from "@/components/PostSkeletons"
-import { Posts } from "@/components/Posts"
+import { Posts } from "@/components/post"
 import { Suspense } from "react"
-import { Filters } from "@/components/Filters"
+import { Filters } from "@/components/post/Filters"
 
 export default function Home({
   searchParams,

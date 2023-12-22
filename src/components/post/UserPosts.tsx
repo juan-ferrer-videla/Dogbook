@@ -1,7 +1,7 @@
 import React from "react"
-import prisma from "../lib/prisma"
+import prisma from "../../lib/prisma"
 import { getServerSession } from "next-auth"
-import { Post } from "./Posts"
+import { Post } from "@/components/post"
 import { redirect } from "next/navigation"
 
 const UserPosts = async () => {

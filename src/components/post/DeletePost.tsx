@@ -2,17 +2,11 @@
 
 import { deletePost } from "@/actions/post"
 import React, { useState } from "react"
-import { Button } from "./ui/button"
-import { Spinner } from "./Spinner"
-import { toast } from "./ui/use-toast"
+import { Button } from "@/components/ui/button"
+import { Spinner } from "@/components/Spinner"
+import { toast } from "@/components/ui/use-toast"
 
-const DeletePostButton = ({
-  id,
-  imageId,
-}: {
-  id: string
-  imageId?: string
-}) => {
+export const DeletePost = ({ id, imageId }: { id: string; imageId?: string }) => {
   const [pending, setPending] = useState(false)
   return (
     <Button
@@ -46,4 +40,3 @@ const DeletePostButton = ({
   )
 }
 
-export default DeletePostButton

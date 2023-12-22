@@ -1,12 +1,12 @@
 "use client"
 
 import React, { useRef, useState } from "react"
-import { Input } from "./ui/input"
-import { Label } from "./ui/label"
-import { Button } from "./ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Button } from "@/components/ui/button"
 import { editPost } from "@/actions/post"
 import { useFormStatus } from "react-dom"
-import { Spinner } from "./Spinner"
+import { Spinner } from "@/components/Spinner"
 import {
   Dialog,
   DialogContent,
@@ -24,10 +24,10 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "./ui/select"
+} from "@/components/ui/select"
 import { Post } from "@prisma/client"
-import { toast } from "./ui/use-toast"
-import { Checkbox } from "./ui/checkbox"
+import { toast } from "@/components/ui/use-toast"
+import { Checkbox } from "@/components/ui/checkbox"
 import { vaccines } from "@/types"
 
 const Submit = () => {
@@ -46,7 +46,7 @@ const Submit = () => {
   )
 }
 
-export const EditFormPost = ({
+export const EditPost = ({
   id,
   title,
   location,

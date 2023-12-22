@@ -10,7 +10,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { SlidersHorizontal } from "lucide-react"
-import { Checkbox } from "./ui/checkbox"
+import { Checkbox } from "../ui/checkbox"
 import { useQuery } from "@/hooks/useQuery"
 import { useSearchParams } from "next/navigation"
 import { sizes, vaccines } from "@/types"

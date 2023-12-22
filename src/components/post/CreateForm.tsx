@@ -2,13 +2,13 @@
 
 import React, { useId, useRef } from "react"
 
-import { Input } from "./ui/input"
-import { Label } from "./ui/label"
-import { Button } from "./ui/button"
+import { Input } from "../ui/input"
+import { Label } from "../ui/label"
+import { Button } from "../ui/button"
 import { useSession } from "next-auth/react"
 import { createPost } from "@/actions/post"
 import { useFormStatus } from "react-dom"
-import { Spinner } from "./Spinner"
+import { Spinner } from "../Spinner"
 import {
   Select,
   SelectContent,
@@ -17,9 +17,9 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "./ui/select"
-import { toast } from "./ui/use-toast"
-import { Checkbox } from "./ui/checkbox"
+} from "../ui/select"
+import { toast } from "../ui/use-toast"
+import { Checkbox } from "../ui/checkbox"
 import { vaccines } from "@/types"
 
 const Submit = () => {
@@ -38,7 +38,7 @@ const Submit = () => {
   )
 }
 
-export const FormPost = () => {
+export const CreateForm = () => {
   const polivalenteId = useId()
   const polivalente2Id = useId()
   const rabiaId = useId()
