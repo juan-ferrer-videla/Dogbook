@@ -15,6 +15,7 @@ import {
   vaccines,
   type SplitKeys,
 } from "@/types"
+import { Pagination } from "./pagination"
 
 const Post = ({
   id,
@@ -147,6 +148,12 @@ const Posts = async ({
 
   const sizeQuery = createQueryFilter("size")
 
+  const postsCount = await prisma.post.count({
+    where: {
+      AND: [sizeQuery, { OR: [vaccinesArr] }],
+    },
+  })
+
   const posts = await prisma.post.findMany({
     where: {
       AND: [sizeQuery, { OR: [vaccinesArr] }],
@@ -154,7 +161,12 @@ const Posts = async ({
     take: postsPerPage,
     skip: (page - 1) * postsPerPage,
   })
-  return <FilteredPosts posts={posts} />
+  return (
+    <>
+      <FilteredPosts posts={posts} />
+      <Pagination postsCount={postsCount} />
+    </>
+  )
 }
 
 export { Posts, Post }

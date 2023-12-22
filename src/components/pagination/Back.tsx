@@ -1,6 +1,7 @@
 "use client"
 
 import { useQuery } from "@/hooks/useQuery"
+import { ChevronLeft } from "lucide-react"
 import React from "react"
 
 export const Back = () => {
@@ -14,8 +15,12 @@ export const Back = () => {
     })
   }
   return (
-    <button onClick={handleQueryBack} disabled={Number(getQuery("page")) <= 1}>
-      Back
+    <button
+      className="flex items-center disabled:text-muted"
+      onClick={handleQueryBack}
+      disabled={Number(getQuery("page")) <= 1}
+    >
+      {<ChevronLeft />}
     </button>
   )
 }

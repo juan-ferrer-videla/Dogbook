@@ -1,6 +1,7 @@
 "use client"
 
 import { useQuery } from "@/hooks/useQuery"
+import { ChevronRight } from "lucide-react"
 import type { ComponentProps, FC } from "react"
 
 export const Foward: FC<Pick<ComponentProps<"button">, "disabled">> = ({
@@ -16,8 +17,12 @@ export const Foward: FC<Pick<ComponentProps<"button">, "disabled">> = ({
     })
   }
   return (
-    <button onClick={handleQueryFoward} disabled={disabled}>
-      Foward
+    <button
+      onClick={handleQueryFoward}
+      disabled={disabled}
+      className="flex items-center disabled:text-muted"
+    >
+      {<ChevronRight />}
     </button>
   )
 }

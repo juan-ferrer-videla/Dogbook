@@ -1,39 +1,45 @@
+"use client"
+
 import { Back } from "./Back"
 import { Foward } from "./Foward"
 import { PageButton } from "./PageButton"
-import { unstable_noStore as noStore } from "next/cache"
-import prisma from "@/lib/prisma"
 import { postsPerPage } from "@/types"
+import { useSearchParams } from "next/navigation"
 
-export const Pagination = async ({
-  searchParams,
-}: {
-  searchParams: Record<string, string | undefined>
-}) => {
-  noStore()
-  const max = await prisma.post.count()
-  const pages = Math.ceil(max / postsPerPage)
+export const Pagination = ({ postsCount }: { postsCount: number }) => {
+  const pagesCount = Math.ceil(postsCount / postsPerPage)
+  const searchParams = useSearchParams()
 
-  const page = searchParams.page ? Number(searchParams.page) : 1
+  if (pagesCount === 1) return null
+
+  const pageParams = searchParams.get("page")
+  const page = pageParams ? Number(pageParams) : 1
 
   return (
-    <div>
-      <ul className="flex items-center gap-x-2 p-2">
-        <li>
-          <Back />
-        </li>
-        {Array(pages)
-          .fill(null)
-          .map((_, index) => (
-            <li key={index}>
-              <PageButton number={index + 1} />
-            </li>
-          ))}
+    <ul className="my-4 flex flex-wrap items-center justify-center gap-x-2 p-2">
+      <li>
+        <Back />
+      </li>
 
-        <li>
-          <Foward disabled={page * postsPerPage >= max} />
-        </li>
-      </ul>
-    </div>
+      <li>
+        <PageButton number={page - 2} postsCount={postsCount} />
+      </li>
+      <li>
+        <PageButton number={page - 1} postsCount={postsCount} />
+      </li>
+      <li>
+        <PageButton number={page} postsCount={postsCount} />
+      </li>
+      <li>
+        <PageButton number={page + 1} postsCount={postsCount} />
+      </li>
+      <li>
+        <PageButton number={page + 2} postsCount={postsCount} />
+      </li>
+
+      <li>
+        <Foward disabled={page * postsPerPage >= postsCount} />
+      </li>
+    </ul>
   )
 }
