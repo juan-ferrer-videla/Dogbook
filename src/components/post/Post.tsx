@@ -61,14 +61,21 @@ export const Post = ({
       <Card className="grid h-full">
         <CardHeader className="flex-row items-center space-x-5">
           {image ? (
-            <CldImage src={image} alt="" sizes="30vw" width={64} height={64} />
+            <CldImage
+              src={image}
+              alt=""
+              sizes="30vw"
+              width={80}
+              height={80}
+              className="rounded-full"
+            />
           ) : (
-            <Image src={dogbook} alt="" sizes="30vw" width={64} height={64} />
+            <Image src={dogbook} alt="" sizes="30vw" width={80} height={80} />
           )}
           <CardTitle>{title}</CardTitle>
         </CardHeader>
-        <CardContent className="grid gap-y-1">
-          {vaccinesArr.length && (
+        <CardContent>
+          {vaccinesArr.length > 0 && (
             <div>
               <strong className="font-medium">Vacunas:</strong>{" "}
               <ul className="list-inside list-disc">
@@ -89,7 +96,7 @@ export const Post = ({
             </p>
           )}
         </CardContent>
-        <CardFooter className="grid gap-y-1 self-end text-muted-foreground">
+        <CardFooter className="grid self-end text-muted-foreground">
           {user && <p>Autor: {user}</p>}
           <p>Ubicación: {location}</p>
           <p>Contacto: {contact}</p>

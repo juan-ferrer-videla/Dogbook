@@ -7,7 +7,10 @@ import { cn } from "@/lib/utils"
 export const CldImage = ({ className, ...props }: CldImageProps) => {
   return (
     <NextCldImage
-      className={cn("h-16 w-16 object-cover object-center", className)}
+      className={cn(
+        "roundedfull h-24 w-24 object-cover object-center",
+        className
+      )}
       {...props}
     />
   )

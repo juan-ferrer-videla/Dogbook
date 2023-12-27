@@ -3,6 +3,7 @@
 import { useQuery } from "@/hooks/useQuery"
 import { ChevronRight } from "lucide-react"
 import type { ComponentProps, FC } from "react"
+import { Button } from "../ui/button"
 
 export const Foward: FC<Pick<ComponentProps<"button">, "disabled">> = ({
   disabled,
@@ -17,12 +18,15 @@ export const Foward: FC<Pick<ComponentProps<"button">, "disabled">> = ({
     })
   }
   return (
-    <button
+    <Button
+      size="sm"
+      variant="ghost"
       onClick={handleQueryFoward}
       disabled={disabled}
-      className="flex items-center disabled:text-muted"
+      className="flex items-center px-1 disabled:text-muted"
+      aria-label="Navegar hacia la pagina posterior"
     >
       {<ChevronRight />}
-    </button>
+    </Button>
   )
 }

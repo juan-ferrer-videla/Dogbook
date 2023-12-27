@@ -55,7 +55,12 @@
     @apply bg-background text-foreground;
   }
   a {
-    @apply ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+    @apply ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 lg:text-lg;
+  }
+  p,
+  li,
+  strong {
+    @apply lg:text-lg;
   }
   /* Chrome, Safari, Edge, Opera */
   input::-webkit-outer-spin-button,

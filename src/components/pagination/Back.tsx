@@ -3,6 +3,7 @@
 import { useQuery } from "@/hooks/useQuery"
 import { ChevronLeft } from "lucide-react"
 import React from "react"
+import { Button } from "../ui/button"
 
 export const Back = () => {
   const { createQueryString, getQuery } = useQuery()
@@ -15,12 +16,15 @@ export const Back = () => {
     })
   }
   return (
-    <button
-      className="flex items-center disabled:text-muted"
+    <Button
+      size="sm"
+      variant="ghost"
+      className="flex items-center px-1 disabled:text-muted"
       onClick={handleQueryBack}
       disabled={Number(getQuery("page")) <= 1}
+      aria-label="Navegar hacia la pagina anterior"
     >
       {<ChevronLeft />}
-    </button>
+    </Button>
   )
 }

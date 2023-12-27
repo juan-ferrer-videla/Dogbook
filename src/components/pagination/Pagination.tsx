@@ -16,7 +16,7 @@ export const Pagination = ({ postsCount }: { postsCount: number }) => {
   const page = pageParams ? Number(pageParams) : 1
 
   return (
-    <ul className="my-4 flex flex-wrap items-center justify-center gap-x-2 p-2">
+    <ul className="my-4 flex flex-wrap items-center justify-center gap-x-1 p-2 md:my-6">
       <li>
         <Back />
       </li>

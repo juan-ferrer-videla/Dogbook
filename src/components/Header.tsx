@@ -15,9 +15,8 @@ const Header = () => {
   return (
     <header className="sticky top-0 bg-background/80 py-4 backdrop-blur-md">
       <div className="container mx-auto flex items-center justify-between">
-        <h1 className="sr-only">Perruno</h1>
         <Link href="/">
-          <Dog size={28} />
+          <h1 className="font-bold uppercase ">Perruno</h1>
         </Link>
         <Nav />
         <div className="flex items-center gap-x-2">

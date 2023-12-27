@@ -59,7 +59,7 @@ export const Posts = async ({
   })
   return (
     <>
-      <ul className="grid gap-6 lg:grid-cols-2">
+      <ul className="my-4 grid gap-6 md:my-8 md:gap-16 lg:my-12 lg:grid-cols-2 ">
         {posts.map((post) => (
           <Post {...post} key={post.id} />
         ))}

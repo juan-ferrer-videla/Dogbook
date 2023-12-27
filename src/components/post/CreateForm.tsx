@@ -67,8 +67,8 @@ export const CreateForm = () => {
 
   return (
     <form action={handleAction} className="mb-10 " ref={formRef}>
-      <legend className="mb-4 text-xl font-semibold sm:text-2xl md:text-3xl">
-        Nuevo Post
+      <legend className="sr-only mb-4 text-xl font-semibold sm:text-2xl md:text-3xl">
+        Datos del animal
       </legend>
       <div className="mb-8 grid gap-x-12 gap-y-6 lg:grid-cols-2">
         <div className="grid w-full items-center gap-1.5">

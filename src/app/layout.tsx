@@ -30,7 +30,7 @@ export default async function RootLayout({
           >
             <Header />
             <main className="container mx-auto grow">{children}</main>
-            <footer className="mt-8 border-t border-t-muted py-8 text-center">
+            <footer className="border-t border-t-muted py-8 text-center">
               Desarrollado por{" "}
               <a
                 href="https://juan-ferrer.vercel.app"

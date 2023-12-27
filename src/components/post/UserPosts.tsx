@@ -9,9 +9,10 @@ const UserPosts = async () => {
   if (!session?.user?.email) redirect("/api/auth/signin")
   const posts = await prisma.post.findMany({
     where: { email: session.user.email },
+    orderBy: { createAt: "desc" },
   })
   return (
-    <ul className="grid gap-x-12 gap-y-6 lg:grid-cols-2">
+    <ul className="my-4 grid gap-6 md:my-8 md:gap-16 lg:my-12 lg:grid-cols-2 ">
       {posts.map((post) => (
         <Post withActions {...post} key={post.id} />
       ))}
