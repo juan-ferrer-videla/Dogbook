@@ -44,19 +44,25 @@ export const Posts = async ({
 
   const sizeQuery = createQueryFilter("size")
 
-  const postsCount = await prisma.post.count({
-    where: {
-      AND: [sizeQuery, { OR: [vaccinesArr] }],
-    },
-  })
+  const [postsCount, posts] = await Promise.all([
+    prisma.post.count({
+      where: {
+        AND: [sizeQuery, { OR: [vaccinesArr] }],
+      },
+    }),
+    prisma.post.findMany({
+      where: {
+        AND: [sizeQuery, { OR: [vaccinesArr] }],
+      },
+      take: postsPerPage,
+      skip: (page - 1) * postsPerPage,
+    }),
+  ])
 
-  const posts = await prisma.post.findMany({
-    where: {
-      AND: [sizeQuery, { OR: [vaccinesArr] }],
-    },
-    take: postsPerPage,
-    skip: (page - 1) * postsPerPage,
-  })
+  const isEmpty = postsCount === 0
+
+  if (isEmpty) return <p>No hay publicaciónes por el momento.</p>
+
   return (
     <>
       <ul className="my-4 grid gap-6 md:my-8 md:gap-16 lg:my-12 lg:grid-cols-2 ">
