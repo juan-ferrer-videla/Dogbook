@@ -27,7 +27,6 @@ export default function Home({
         </div>
         <Image
           priority
-          placeholder="blur"
           src={DogAndWomen}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           alt="Una mujer con su perro"

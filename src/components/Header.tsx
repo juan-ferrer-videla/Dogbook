@@ -4,9 +4,9 @@ import React from "react"
 import AuthButton from "./AuthButton"
 import { ToggleTheme } from "./ToggleTheme"
 import Nav from "./Nav"
-import { Dog } from "lucide-react"
 import Link from "next/link"
 import { useSearchParams } from "next/navigation"
+import { NavDrawer } from "./nav-drawer"
 
 const Header = () => {
   const searchParams = useSearchParams()
@@ -19,10 +19,11 @@ const Header = () => {
           <h1 className="font-bold uppercase ">Perruno</h1>
         </Link>
         <Nav />
-        <div className="flex items-center gap-x-2">
+        <div className="hidden items-center gap-x-2 sm:flex">
           <ToggleTheme />
           <AuthButton />
         </div>
+        <NavDrawer />
       </div>
     </header>
   )

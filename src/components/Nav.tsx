@@ -8,7 +8,7 @@ const Nav = () => {
   const pathname = usePathname()
 
   return (
-    <nav className="space-x-4">
+    <nav className="hidden space-x-4 sm:flex">
       <Link href="/" className={pathname === "/" ? "text-primary" : ""}>
         Inicio
       </Link>
