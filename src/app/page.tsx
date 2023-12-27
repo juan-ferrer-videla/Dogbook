@@ -15,7 +15,7 @@ export default function Home({
     <>
       <div className="mt-4 grid place-items-center gap-6 text-center sm:gap-x-8 md:mt-8 md:gap-x-16 lg:grid-cols-2 lg:gap-x-24 lg:text-start">
         <div className="flex flex-col justify-center">
-          <h2 className="mb-4 text-3xl font-bold leading-tight tracking-tight md:mb-6 md:text-5xl lg:leading-[1.1]">
+          <h2 className="mb-4 text-3xl font-bold leading-tight tracking-tighter md:text-6xl lg:leading-[1.1]">
             Encontremos un hogar para ellos
           </h2>
           <p className="mb-2 text-muted-foreground">
@@ -26,7 +26,10 @@ export default function Home({
           </p>
         </div>
         <Image
+          priority
+          placeholder="blur"
           src={DogAndWomen}
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           alt="Una mujer con su perro"
           className="w-full max-w-sm"
         />

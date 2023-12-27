@@ -22,7 +22,7 @@ const AuthButton = () => {
   if (data?.user?.image && data.user.name)
     return (
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
+        <DropdownMenuTrigger asChild className="cursor-pointer">
           <Image
             src={data?.user?.image || ""}
             alt="a"
@@ -37,7 +37,9 @@ const AuthButton = () => {
             <span>{data.user.email}</span>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Link href="/dashboard">Publica</Link>
+            <Link className="text-base" href="/dashboard">
+              Publica
+            </Link>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={() => signOut({ callbackUrl: "/" })}>

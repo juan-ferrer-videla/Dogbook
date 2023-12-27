@@ -38,7 +38,7 @@ export const Filters = () => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">
+        <Button>
           <SlidersHorizontal className="mr-3" size={20} />
           Filtros
         </Button>

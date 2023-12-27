@@ -2,6 +2,8 @@
 
 import React, { useId, useRef } from "react"
 
+import { AlertCircle } from "lucide-react"
+
 import { Input } from "../ui/input"
 import { Label } from "../ui/label"
 import { Button } from "../ui/button"
@@ -170,6 +172,12 @@ export const CreateForm = () => {
         <input type="hidden" name="user" value={user} required />
       </div>
       <Submit />
+      <p role="alert" className="mt-4">
+        <AlertCircle className="inline-block" size={20} />{" "}
+        <small>
+          Si ya se encontro un hogar recorda eliminar la publicación.
+        </small>
+      </p>
     </form>
   )
 }

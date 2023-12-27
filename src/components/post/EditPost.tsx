@@ -84,13 +84,10 @@ export const EditPost = ({
       <DialogTrigger asChild>
         <Button variant="outline">Editar</Button>
       </DialogTrigger>
-      <DialogContent className="w-[90vw] max-w-2xl">
+      <DialogContent className="max-w-2xl">
         <DialogHeader>
-          <DialogTitle>Edita tu post</DialogTitle>
-          <DialogDescription>
-            Hace las modificaciones de tu post aca. Cuando termines clickea el
-            boton de guardar.
-          </DialogDescription>
+          <DialogTitle>Edita tu publicación</DialogTitle>
+          <DialogDescription>Al finalizar recorda guardar</DialogDescription>
         </DialogHeader>
         <form action={handleAction} className="grid gap-y-6" ref={formRef}>
           <div className="grid w-full items-center gap-1.5">
