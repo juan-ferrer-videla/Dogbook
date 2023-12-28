@@ -8,7 +8,7 @@ export const vaccines = {
 } as const
 
 export type ValueOf<T> = T[keyof T]
-export type Vaccines = ValueOf<typeof vaccines>
+export type TVaccines = ValueOf<typeof vaccines>
 export type VaccinesKeys = Extract<
   keyof Post,
   "polivalente" | "polivalente2" | "polivalente_refuerzo" | "rabia"

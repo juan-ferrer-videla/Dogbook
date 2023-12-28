@@ -74,7 +74,7 @@ export const CreateForm = () => {
       </legend>
       <div className="mb-8 grid gap-x-12 gap-y-6 lg:grid-cols-2">
         <div className="grid w-full items-center gap-1.5">
-          <Label htmlFor="title">Nombre</Label>
+          <Label htmlFor="title">Nombre*</Label>
           <Input id="title" placeholder="Titulo" name="title" required />
         </div>
         <div className="grid w-full items-center gap-1.5">
@@ -100,7 +100,7 @@ export const CreateForm = () => {
           </Select>
         </div>
         <div className="grid w-full items-center gap-1.5">
-          <Label htmlFor="contact">Contacto</Label>
+          <Label htmlFor="contact">Contacto*</Label>
           <Input
             id="contact"
             placeholder="numero de telefono, email, instagram..."
@@ -109,11 +109,11 @@ export const CreateForm = () => {
           />
         </div>
         <div className="grid w-full items-center gap-1.5">
-          <Label htmlFor="location">Ubicación</Label>
+          <Label htmlFor="location">Ubicación*</Label>
           <Input
             id="location"
             name="location"
-            placeholder="Calle ejemplo 123"
+            placeholder="Godoy Cruz, Mendoza, Argentina"
             required
           />
         </div>

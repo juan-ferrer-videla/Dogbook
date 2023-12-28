@@ -16,6 +16,10 @@ module.exports = {
       },
     },
     extend: {
+      gridTemplateColumns: {
+        responsive: "repeat(auto-fit, minmax(250px, 1fr))",
+        post: "auto, 1fr",
+      },
       screens: {
         "2xl": "1300px",
       },

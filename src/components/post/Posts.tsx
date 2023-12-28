@@ -5,6 +5,7 @@ import prisma from "@/lib/prisma"
 import { type VaccinesKeys, postsPerPage, type SplitKeys } from "@/types"
 import { Pagination } from "@/components/pagination"
 import { Post } from "."
+import Link from "next/link"
 
 export const Posts = async ({
   searchParams,
@@ -67,7 +68,11 @@ export const Posts = async ({
     <>
       <ul className="my-4 grid gap-6 md:my-8 md:gap-16 lg:my-12 lg:grid-cols-2 ">
         {posts.map((post) => (
-          <Post {...post} key={post.id} />
+          <li key={post.id}>
+            <Link href={`/post/${post.id}`}>
+              <Post {...post} />
+            </Link>
+          </li>
         ))}
       </ul>
       <Pagination postsCount={postsCount} />

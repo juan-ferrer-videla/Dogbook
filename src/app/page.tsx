@@ -26,11 +26,11 @@ export default function Home({
           </p>
         </div>
         <Image
-          priority
           src={DogAndWomen}
+          priority
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          alt="Una mujer con su perro"
           className="w-full max-w-sm"
+          alt="Una mujer con su perro"
         />
       </div>
       <div className="my-4 flex flex-wrap items-center gap-4 ">

@@ -16,7 +16,9 @@ const UserPosts = async () => {
   return (
     <ul className="my-4 grid gap-6 md:my-8 md:gap-16 lg:my-12 lg:grid-cols-2 ">
       {posts.map((post) => (
-        <Post withActions {...post} key={post.id} />
+        <li key={post.id}>
+          <Post withActions {...post} />
+        </li>
       ))}
     </ul>
   )
