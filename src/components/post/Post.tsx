@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/card"
 import { EditPost } from "./EditPost"
 import { DeletePost } from "./DeletePost"
+import Link from "next/link"
 
 export const Post = ({
   id,
@@ -58,57 +59,59 @@ export const Post = ({
   const date = `${day}/${month}/${year}`
   return (
     <li>
-      <Card className="grid h-full">
-        <CardHeader className="flex-row items-center space-x-5">
-          {image ? (
-            <CldImage
-              src={image}
-              alt=""
-              sizes="30vw"
-              width={80}
-              height={80}
-              className="rounded-full"
-            />
-          ) : (
-            <Image src={dogbook} alt="" sizes="30vw" width={80} height={80} />
-          )}
-          <CardTitle>{title}</CardTitle>
-        </CardHeader>
-        <CardContent>
-          {vaccinesArr.length > 0 && (
-            <div>
-              <strong className="font-medium">Vacunas:</strong>{" "}
-              <ul className="list-inside list-disc">
-                {vaccinesArr.map((vaccine) => (
-                  <li key={vaccine}>{vaccine}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-          {size && (
-            <p>
-              <strong className="font-medium">Tamaño:</strong> {size}
-            </p>
-          )}
-          {age && (
-            <p>
-              <strong className="font-medium">Edad:</strong> {age}
-            </p>
-          )}
-        </CardContent>
-        <CardFooter className="grid self-end text-muted-foreground">
-          {user && <p>Autor: {user}</p>}
-          <p>Ubicación: {location}</p>
-          <p>Contacto: {contact}</p>
-          <p>Fecha: {date}</p>
-          {withActions && (
-            <div className="mt-4 flex justify-between">
-              <DeletePost id={id} imageId={image || undefined} />
-              <EditPost {...defaultValues} />
-            </div>
-          )}
-        </CardFooter>
-      </Card>
+      <Link href={`/post/${id}`} className="group">
+        <Card className="grid h-full transition-transform group-hover:scale-[1.02]">
+          <CardHeader className="flex-row items-center space-x-5">
+            {image ? (
+              <CldImage
+                src={image}
+                alt=""
+                sizes="30vw"
+                width={200}
+                height={200}
+                className="h-24 w-24 rounded-full"
+              />
+            ) : (
+              <Image src={dogbook} alt="" sizes="30vw" width={96} height={96} />
+            )}
+            <CardTitle>{title}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            {vaccinesArr.length > 0 && (
+              <div>
+                <strong className="font-medium">Vacunas:</strong>{" "}
+                <ul className="list-inside list-disc">
+                  {vaccinesArr.map((vaccine) => (
+                    <li key={vaccine}>{vaccine}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {size && (
+              <p>
+                <strong className="font-medium">Tamaño:</strong> {size}
+              </p>
+            )}
+            {age && (
+              <p>
+                <strong className="font-medium">Edad:</strong> {age}
+              </p>
+            )}
+          </CardContent>
+          <CardFooter className="grid self-end text-muted-foreground">
+            {user && <p>Autor: {user}</p>}
+            <p>Ubicación: {location}</p>
+            <p>Contacto: {contact}</p>
+            <p>Fecha: {date}</p>
+            {withActions && (
+              <div className="mt-4 flex justify-between">
+                <DeletePost id={id} imageId={image || undefined} />
+                <EditPost {...defaultValues} />
+              </div>
+            )}
+          </CardFooter>
+        </Card>
+      </Link>
     </li>
   )
 }

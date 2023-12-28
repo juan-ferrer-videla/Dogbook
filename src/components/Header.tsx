@@ -13,7 +13,7 @@ const Header = () => {
   const params = new URLSearchParams(searchParams)
 
   return (
-    <header className="sticky top-0 bg-background/80 py-4 backdrop-blur-md">
+    <header className="sticky top-0 z-10 bg-background/80 py-4 backdrop-blur-md">
       <div className="container mx-auto flex items-center justify-between">
         <Link href="/">
           <h1 className="font-bold uppercase ">Perruno</h1>

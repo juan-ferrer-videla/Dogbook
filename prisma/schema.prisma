@@ -13,16 +13,22 @@ datasource db {
 model Post {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   title String
-  size String @default("")
+  size String? 
   polivalente Boolean @default(false)
   polivalente2 Boolean @default(false)
   polivalente_refuerzo Boolean @default(false)
   rabia Boolean @default(false)
-  age String @default("")
+  age String?
   createAt Int
   location String
   contact String
   email String
   user String
-  image String @default("")
+  image String?
+}
+
+model User {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  email String @unique
+  favs String[] @default([])
 }

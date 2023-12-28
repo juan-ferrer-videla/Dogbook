@@ -106,14 +106,14 @@ export const EditPost = ({
               id="age"
               placeholder="6 meses"
               name="age"
-              defaultValue={age}
+              defaultValue={age ?? ""}
             />
           </div>
           <div className="grid w-full items-center gap-1.5">
             <Label htmlFor="size" className="mb-2">
               Tamaño
             </Label>
-            <Select name="size" defaultValue={size}>
+            <Select name="size" defaultValue={size ?? ""}>
               <SelectTrigger id="size">
                 <SelectValue placeholder="Selecciona un tamaño" />
               </SelectTrigger>
@@ -215,7 +215,7 @@ export const EditPost = ({
               </div>
             </div>
           </fieldset>
-          <input type="hidden" value={image} name="publicId" />
+          <input type="hidden" value={image ?? ""} name="publicId" />
           <input type="hidden" value={id} name="id" />
 
           <DialogFooter>
