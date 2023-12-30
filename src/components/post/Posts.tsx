@@ -66,7 +66,12 @@ export const Posts = async ({
 
   const isEmpty = postsCount === 0
 
-  if (isEmpty) return <p>No hay publicaciónes por el momento.</p>
+  if (isEmpty)
+    return (
+      <p className="my-4 md:my-8 lg:my-12">
+        No hay publicaciónes por el momento.
+      </p>
+    )
 
   return (
     <>
