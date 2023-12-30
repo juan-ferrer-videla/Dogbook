@@ -23,7 +23,7 @@ export async function generateMetadata({
     .catch(() => {})
 
   return {
-    title: `${post?.title} - Perruno`,
+    title: `${post?.title} - Bacho`,
   }
 }
 
@@ -74,7 +74,7 @@ const Post = async ({ params: { slug } }: { params: { slug: string } }) => {
       <h1 className="mb-6 text-center text-3xl font-bold leading-tight tracking-tighter sm:mb-10 md:text-6xl lg:leading-[1.1]">
         {title}
       </h1>
-      <div className="lg:grid-cols-post grid gap-x-12 gap-y-8 text-center lg:text-start">
+      <div className="grid gap-x-12 gap-y-8 text-center lg:grid-cols-post lg:text-start">
         {image && (
           <CldImage
             alt="Perro"

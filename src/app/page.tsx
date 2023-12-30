@@ -4,7 +4,7 @@ import { Posts } from "@/components/post"
 import { Suspense } from "react"
 import { Filters } from "@/components/post/Filters"
 import Image from "next/image"
-import DogAndWomen from "@/assets/perruno.png"
+import DogAndWomen from "@/assets/bacho.png"
 
 export default function Home({
   searchParams,
@@ -19,7 +19,7 @@ export default function Home({
             Encontremos un hogar para ellos
           </h2>
           <p className="mb-2 text-muted-foreground">
-            A travez de Perruno podes encontrar perros que necesiten un hogar.
+            A travez de Bacho podes encontrar perros que necesiten un hogar.
           </p>
           <p className="text-muted-foreground">
             También podes publicar y ayudar a que otras personas los encuentren.
