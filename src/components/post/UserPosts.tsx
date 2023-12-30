@@ -12,7 +12,12 @@ const UserPosts = async () => {
     orderBy: { createAt: "desc" },
   })
   const isEmpty = posts.length === 0
-  if (isEmpty) return <p>No hay publicaciones por el momento.</p>
+  if (isEmpty)
+    return (
+      <p className="my-4 md:my-8 lg:my-12">
+        No hay publicaciones por el momento.
+      </p>
+    )
   return (
     <ul className="my-4 grid gap-6 md:my-8 md:gap-16 lg:my-12 lg:grid-cols-2 ">
       {posts.map((post) => (
