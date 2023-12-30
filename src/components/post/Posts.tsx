@@ -15,11 +15,15 @@ export const Posts = async ({
   noStore()
   const page = searchParams.page ? Number(searchParams.page) : 1
 
-  const createQueryFilter = (filterQuery: string) => {
-    const filter = searchParams[filterQuery]
-    if (filter === undefined) return {}
-    if (typeof filter === "string") return { [filterQuery]: filter }
-    const filters = filter.map((filter) => ({ [filterQuery]: filter }))
+  const createQueryFilter = (filterQuerys: string[]) => {
+    const filters = filterQuerys.reduce(
+      (acc, query) => {
+        const value = searchParams[query]
+        if (typeof value === "string") acc.push({ size: value })
+        return acc
+      },
+      [] as { size: string }[]
+    )
     return { OR: filters }
   }
   const polivalente = { polivalente: !!searchParams.polivalente }
@@ -43,7 +47,7 @@ export const Posts = async ({
     }
   )
 
-  const sizeQuery = createQueryFilter("size")
+  const sizeQuery = createQueryFilter(["big", "small", "medium"])
 
   const [postsCount, posts] = await Promise.all([
     prisma.post.count({

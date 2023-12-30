@@ -7,14 +7,20 @@ import { vaccines } from "@/types"
 
 export const FilterBadges = () => {
   const searchParams = useSearchParams()
-  const size = searchParams.getAll("size")
   const polivalente = searchParams.get("polivalente") && vaccines.polivalente
   const polivalente2 = searchParams.get("polivalente2") && vaccines.polivalente2
   const rabia = searchParams.get("rabia") && vaccines.rabia
   const polivalenteRefuerzo =
     searchParams.get("polivalente_refuerzo") && vaccines.polivalente_refuerzo
 
-  const vaccinesArr: string[] = [
+  const big = searchParams.get("big")
+  const medium = searchParams.get("medium")
+  const small = searchParams.get("small")
+
+  const filters: string[] = [
+    big,
+    medium,
+    small,
     polivalente,
     polivalente2,
     rabia,
@@ -23,7 +29,6 @@ export const FilterBadges = () => {
     if (v) acc.push(v)
     return acc
   }, [] as string[])
-  const filters = [...size, ...vaccinesArr]
 
   return (
     <ul className="flex flex-wrap gap-4 ">

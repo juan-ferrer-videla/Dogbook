@@ -56,8 +56,8 @@ export const Filters = () => {
             <div className="flex items-center space-x-2">
               <Checkbox
                 id="big"
-                onCheckedChange={handeCheckChange("size", big)}
-                defaultChecked={handleDefaultCheck("size", big)}
+                onCheckedChange={handeCheckChange("big", big)}
+                defaultChecked={handleDefaultCheck("big", big)}
               />
               <label
                 htmlFor="big"
@@ -69,8 +69,8 @@ export const Filters = () => {
             <div className="flex items-center space-x-2">
               <Checkbox
                 id="medium"
-                onCheckedChange={handeCheckChange("size", medium)}
-                defaultChecked={handleDefaultCheck("size", medium)}
+                onCheckedChange={handeCheckChange("medium", medium)}
+                defaultChecked={handleDefaultCheck("medium", medium)}
               />
               <label
                 htmlFor="medium"
@@ -82,8 +82,8 @@ export const Filters = () => {
             <div className="flex items-center space-x-2">
               <Checkbox
                 id="small"
-                onCheckedChange={handeCheckChange("size", small)}
-                defaultChecked={handleDefaultCheck("size", small)}
+                onCheckedChange={handeCheckChange("small", small)}
+                defaultChecked={handleDefaultCheck("small", small)}
               />
               <label
                 htmlFor="small"
