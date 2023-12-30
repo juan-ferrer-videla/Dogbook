@@ -21,7 +21,7 @@ export const useQuery = () => {
       const params = new URLSearchParams(searchParams)
 
       params[action](name, value)
-      router.replace(pathname + "?" + params.toString())
+      router.replace(pathname + "?" + params.toString(), { scroll: false })
     },
     [searchParams, router, pathname]
   )
