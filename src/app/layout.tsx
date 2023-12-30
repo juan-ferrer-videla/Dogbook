@@ -8,9 +8,29 @@ import { Toaster } from "@/components/ui/toaster"
 
 const inter = Inter({ subsets: ["latin"] })
 
+const title = "Bancho"
+const description = "Adopta animales que necesitan un hogar"
+
 export const metadata: Metadata = {
-  title: "Bancho",
-  description: "Aplicacion para adoptar perros",
+  title,
+  description,
+  authors: {
+    name: "Juan Ferrer",
+    url: "https://juan-ferrer.vercel.app/",
+  },
+  keywords: ["Adoptar", "Animales", "Perros"],
+
+  creator: "Juan Ferrer",
+  openGraph: {
+    title,
+    description,
+    images: ["/favicon.png"],
+  },
+  twitter: {
+    title,
+    description,
+    images: ["/favicon.png"],
+  },
 }
 
 export default async function RootLayout({
