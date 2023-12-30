@@ -23,7 +23,7 @@ export async function generateMetadata({
     .catch(() => {})
 
   return {
-    title: `${post?.title} - Bacho`,
+    title: `${post?.title} - Bancho`,
   }
 }
 
