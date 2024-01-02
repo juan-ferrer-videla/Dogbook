@@ -5,6 +5,7 @@ import SessionProvider from "@/components/SessionProvider"
 import Header from "@/components/Header"
 import { ThemeProvider } from "@/components/ThemeProvider"
 import { Toaster } from "@/components/ui/toaster"
+import { GoogleTagManager } from "@next/third-parties/google"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -65,6 +66,7 @@ export default async function RootLayout({
           </ThemeProvider>
         </body>
       </SessionProvider>
+      <GoogleTagManager gtmId="G-RL4CB3FVGV" />
     </html>
   )
 }
