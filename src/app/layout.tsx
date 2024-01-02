@@ -5,8 +5,7 @@ import SessionProvider from "@/components/SessionProvider"
 import Header from "@/components/Header"
 import { ThemeProvider } from "@/components/ThemeProvider"
 import { Toaster } from "@/components/ui/toaster"
-/* import { GoogleTagManager } from "@next/third-parties/google"
- */
+
 const inter = Inter({ subsets: ["latin"] })
 
 const title = "Bancho"
@@ -65,8 +64,6 @@ export default async function RootLayout({
             <Toaster />
           </ThemeProvider>
         </body>
-        {/*         <GoogleTagManager gtmId="G-RL4CB3FVGV" />
-         */}{" "}
       </SessionProvider>
     </html>
   )

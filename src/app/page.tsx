@@ -5,6 +5,7 @@ import { Suspense } from "react"
 import { Filters } from "@/components/post/Filters"
 import Image from "next/image"
 import DogAndWomen from "@/assets/bancho.png"
+import { GoogleTagManager } from "@next/third-parties/google"
 
 export default function Home({
   searchParams,
@@ -40,6 +41,7 @@ export default function Home({
       <Suspense fallback={<PostSkeletons />}>
         <Posts searchParams={searchParams} />
       </Suspense>
+      <GoogleTagManager gtmId="G-RL4CB3FVGV" />
     </>
   )
 }
