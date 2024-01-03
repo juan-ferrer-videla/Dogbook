@@ -11,6 +11,12 @@ const inter = Inter({ subsets: ["latin"] })
 const title = "Bancho"
 const description = "Adopta animales que necesitan un hogar"
 
+const images = {
+  url: "/favicon.png",
+  width: 600,
+  height: 600,
+}
+
 export const metadata: Metadata = {
   title,
   description,
@@ -24,12 +30,12 @@ export const metadata: Metadata = {
   openGraph: {
     title,
     description,
-    images: ["/favicon.png"],
+    images,
   },
   twitter: {
     title,
     description,
-    images: ["/favicon.png"],
+    images,
   },
 }
 
