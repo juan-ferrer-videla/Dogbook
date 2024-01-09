@@ -25,4 +25,4 @@ export const sizes = {
 
 export type Sizes = ValueOf<typeof sizes>
 
-export const postsPerPage = 10
+export const postsPerPage = 12
