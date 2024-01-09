@@ -3,7 +3,7 @@
 import { deletePost } from "@/actions/post"
 import React, { useState } from "react"
 import { Button, buttonVariants } from "@/components/ui/button"
-import { Spinner } from "@/components/Spinner"
+import { Spinner } from "@/components/spinner"
 import { toast } from "@/components/ui/use-toast"
 import {
   AlertDialog,

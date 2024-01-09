@@ -1,17 +1,11 @@
-"use client"
-
 import React from "react"
-import AuthButton from "./AuthButton"
-import { ToggleTheme } from "./ToggleTheme"
-import Nav from "./Nav"
+import AuthButton from "./auth-button"
+import { ToggleTheme } from "./toggle-theme"
+import Nav from "./nav"
 import Link from "next/link"
-import { useSearchParams } from "next/navigation"
 import { NavDrawer } from "./nav-drawer"
 
-const Header = () => {
-  const searchParams = useSearchParams()
-  const params = new URLSearchParams(searchParams)
-
+export const Header = () => {
   return (
     <header className="sticky top-0 z-10 bg-background/80 py-4 backdrop-blur-md">
       <div className="container mx-auto flex items-center justify-between">
@@ -28,5 +22,3 @@ const Header = () => {
     </header>
   )
 }
-
-export default Header

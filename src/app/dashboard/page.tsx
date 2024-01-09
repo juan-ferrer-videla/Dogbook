@@ -1,5 +1,5 @@
 import { CreateForm } from "@/components/post"
-import { UserPosts } from "@/components/post/UserPosts"
+import { UserPosts } from "@/components/post/user-posts"
 import { Separator } from "@/components/ui/separator"
 import { getServerSession } from "next-auth"
 import { redirect } from "next/navigation"

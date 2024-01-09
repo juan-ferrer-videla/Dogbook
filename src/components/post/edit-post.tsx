@@ -6,7 +6,7 @@ import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 import { editPost } from "@/actions/post"
 import { useFormStatus } from "react-dom"
-import { Spinner } from "@/components/Spinner"
+import { Spinner } from "@/components/spinner"
 import {
   Dialog,
   DialogContent,

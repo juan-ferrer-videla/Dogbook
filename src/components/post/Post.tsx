@@ -1,4 +1,4 @@
-import { CldImage } from "@/components/post/CldImage"
+import { CldImage } from "@/components/post/cld-image"
 import Image from "next/image"
 import dogbook from "@/assets/dogbook.png"
 import type { Post as TPost } from "@prisma/client"
@@ -10,8 +10,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { EditPost } from "./EditPost"
-import { DeletePost } from "./DeletePost"
+import { EditPost } from "./edit-post"
+import { DeletePost } from "./delete-post"
 
 export const Post = ({
   id,

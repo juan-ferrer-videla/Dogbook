@@ -10,7 +10,7 @@ import { Button } from "../ui/button"
 import { useSession } from "next-auth/react"
 import { createPost } from "@/actions/post"
 import { useFormStatus } from "react-dom"
-import { Spinner } from "../Spinner"
+import { Spinner } from "../spinner"
 import {
   Select,
   SelectContent,

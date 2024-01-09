@@ -1,7 +1,7 @@
 import React from "react"
 import prisma from "@/lib/prisma"
 import { redirect } from "next/navigation"
-import { CldImage } from "@/components/post/CldImage"
+import { CldImage } from "@/components/post/cld-image"
 import { vaccines } from "@/types"
 import type { TVaccines } from "@/types"
 
