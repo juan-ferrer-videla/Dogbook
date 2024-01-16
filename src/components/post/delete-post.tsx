@@ -53,7 +53,7 @@ export const DeletePost = ({
           <AlertDialogTitle>Estas seguro?</AlertDialogTitle>
           <AlertDialogDescription>
             Esta acción no se puede deshacer. La publicación se borrar de forma
-            permanente.
+            permanente .
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
