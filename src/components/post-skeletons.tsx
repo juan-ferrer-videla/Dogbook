@@ -1,7 +1,7 @@
 import { Skeleton } from "./ui/skeleton"
 
 const PostSkeleton = () => (
-  <div className="rounded bg-card p-4 md:p-8">
+  <div className="rounded border bg-card p-4 shadow-xl md:p-8">
     <div className="flex items-center gap-x-6">
       <Skeleton className="aspect-square w-16 rounded-full" />
       <Skeleton className="h-5 w-36" />
