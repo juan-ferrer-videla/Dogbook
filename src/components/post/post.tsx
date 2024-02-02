@@ -58,7 +58,7 @@ export const Post = ({
   const date = `${day}/${month}/${year}`
 
   return (
-    <Card className="grid h-full transition-transform">
+    <Card className="grid h-full shadow-xl transition-transform">
       <CardHeader className="flex-row items-center space-x-5">
         {image ? (
           <CldImage

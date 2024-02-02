@@ -61,7 +61,7 @@ export default async function RootLayout({
                 Desarrollado por{" "}
                 <a
                   href="https://juan-ferrer.vercel.app"
-                  className="text-primary"
+                  className="text-primary lg:text-sm"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
