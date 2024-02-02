@@ -57,15 +57,17 @@ export default async function RootLayout({
             <Header />
             <main className="container mx-auto grow">{children}</main>
             <footer className="border-t border-t-muted py-8 text-center">
-              Desarrollado por{" "}
-              <a
-                href="https://juan-ferrer.vercel.app"
-                className="text-primary"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Juan Ferrer
-              </a>
+              <small>
+                Desarrollado por{" "}
+                <a
+                  href="https://juan-ferrer.vercel.app"
+                  className="text-primary"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Juan Ferrer
+                </a>
+              </small>
             </footer>
             <Toaster />
           </ThemeProvider>
