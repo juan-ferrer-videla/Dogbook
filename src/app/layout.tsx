@@ -58,7 +58,7 @@ export default async function RootLayout({
             <main className="container mx-auto grow">{children}</main>
             <footer className="border-t border-t-muted py-8 text-center">
               <small>
-                Desarrollado por{" "}
+                Es una iniciativa de{" "}
                 <a
                   href="https://juan-ferrer.vercel.app"
                   className="text-primary lg:text-sm"
@@ -66,6 +66,15 @@ export default async function RootLayout({
                   rel="noopener noreferrer"
                 >
                   Juan Ferrer
+                </a>{" "}
+                y{" "}
+                <a
+                  href="https://www.linkedin.com/in/martina-fortes-del-campo-3771b0142/"
+                  className="text-primary lg:text-sm"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Martina Fortes
                 </a>
               </small>
             </footer>
