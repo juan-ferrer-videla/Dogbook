@@ -83,6 +83,11 @@ export default async function RootLayout({
                   Politicas de privacidad
                 </Link>
               </p>
+              <p>
+                <Link href={"/terms-of-service"} className="text-sm">
+                  Terminos del servicio
+                </Link>
+              </p>
             </footer>
             <Toaster />
           </ThemeProvider>
