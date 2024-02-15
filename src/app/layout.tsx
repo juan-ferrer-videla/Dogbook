@@ -5,6 +5,7 @@ import SessionProvider from "@/components/session-provider"
 import { Header } from "@/components/header"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Toaster } from "@/components/ui/toaster"
+import Link from "next/link"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -77,6 +78,11 @@ export default async function RootLayout({
                   Martina Fortes
                 </a>
               </small>
+              <p>
+                <Link href={"/privacy-policy"} className="text-sm">
+                  Politicas de privacidad
+                </Link>
+              </p>
             </footer>
             <Toaster />
           </ThemeProvider>
