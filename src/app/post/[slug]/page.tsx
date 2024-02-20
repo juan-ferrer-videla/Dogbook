@@ -44,19 +44,8 @@ const Post = async ({ params: { slug } }: { params: { slug: string } }) => {
       </div>
     )
 
-  const {
-    age,
-    contact,
-    createAt,
-    email,
-    id,
-    image,
-    location,
-    details,
-    size,
-    title,
-    user,
-  } = post
+  const { age, contact, email, image, location, details, size, title, user } =
+    post
 
   return (
     <div className="mb-10">

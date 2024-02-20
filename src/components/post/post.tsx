@@ -45,6 +45,8 @@ export const Post = ({
 
   const date = `${day}/${month}/${year}`
 
+  const detailsArr = details?.split("\n") ?? []
+
   return (
     <Card className="grid h-full shadow-xl transition-transform">
       <CardHeader className="flex-row items-center space-x-5">
@@ -65,7 +67,10 @@ export const Post = ({
       <CardContent>
         {details && (
           <div className="mb-2">
-            <strong className="font-medium">Detalles:</strong> <p>{details}</p>
+            <strong className="font-medium">Detalles:</strong>{" "}
+            {detailsArr.map((detail, i) => (
+              <p key={i}>{detail}</p>
+            ))}
           </div>
         )}
         {size && (

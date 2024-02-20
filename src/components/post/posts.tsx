@@ -2,7 +2,7 @@ import React from "react"
 
 import { unstable_noStore as noStore } from "next/cache"
 import prisma from "@/lib/prisma"
-import { type VaccinesKeys, postsPerPage, type SplitKeys } from "@/types"
+import { postsPerPage } from "@/types"
 import { Pagination } from "@/components/pagination"
 import { Post } from "."
 import Link from "next/link"
@@ -26,38 +26,18 @@ export const Posts = async ({
     )
     return { OR: filters }
   }
-  const polivalente = { polivalente: !!searchParams.polivalente }
-  const rabia = { rabia: !!searchParams.rabia }
-  const polivalente2 = { polivalente2: !!searchParams.polivalente2 }
-  const polivalente_refuerzo = {
-    polivalente_refuerzo: !!searchParams.polivalente_refuerzo,
-  }
-  const vaccinesArr = [
-    polivalente,
-    rabia,
-    polivalente2,
-    polivalente_refuerzo,
-  ].reduce(
-    (acc, vaccine) => {
-      if (Object.values(vaccine)[0]) acc.OR.push(vaccine)
-      return acc
-    },
-    { OR: [] } as {
-      OR: SplitKeys<Record<VaccinesKeys, boolean>>[]
-    }
-  )
 
   const sizeQuery = createQueryFilter(["big", "small", "medium"])
 
   const [postsCount, posts] = await Promise.all([
     prisma.post.count({
       where: {
-        AND: [sizeQuery, { OR: [vaccinesArr] }],
+        AND: [sizeQuery],
       },
     }),
     prisma.post.findMany({
       where: {
-        AND: [sizeQuery, { OR: [vaccinesArr] }],
+        AND: [sizeQuery],
       },
       take: postsPerPage,
       skip: (page - 1) * postsPerPage,
