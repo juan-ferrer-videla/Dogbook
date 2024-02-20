@@ -49,6 +49,8 @@ const Post = async ({ params: { slug } }: { params: { slug: string } }) => {
 
   const detailsArr = details?.split("\n") ?? []
 
+  console.log(details)
+
   return (
     <div className="mb-10">
       <h1 className="mb-6 text-center text-3xl font-bold leading-tight tracking-tighter sm:mb-10 md:text-6xl lg:leading-[1.1]">

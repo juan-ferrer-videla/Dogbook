@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/card"
 import { EditPost } from "./edit-post"
 import { DeletePost } from "./delete-post"
+import { useMemo } from "react"
 
 export const Post = ({
   id,
@@ -45,7 +46,7 @@ export const Post = ({
 
   const date = `${day}/${month}/${year}`
 
-  const detailsArr = details?.split("\n") ?? []
+  const detailsArr = useMemo(() => details?.split("\n") ?? [], [details])
 
   return (
     <Card className="grid h-full shadow-xl transition-transform">

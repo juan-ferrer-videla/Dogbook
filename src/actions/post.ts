@@ -128,14 +128,14 @@ export const editPost = async (data: FormData) => {
     }
   }
 
-  const { id, ...mutableData } = postData
+  const { id, publicId: image, ...mutableData } = postData
 
   await prisma.post.update({
     where: { id: postData.id },
     data: {
       ...mutableData,
       createAt: Date.now(),
-      image: publicId,
+      image,
     },
   })
   revalidatePath("/")
