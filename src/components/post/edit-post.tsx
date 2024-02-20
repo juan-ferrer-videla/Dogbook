@@ -27,8 +27,7 @@ import {
 } from "@/components/ui/select"
 import { Post } from "@prisma/client"
 import { toast } from "@/components/ui/use-toast"
-import { Checkbox } from "@/components/ui/checkbox"
-import { vaccines } from "@/types"
+import { Textarea } from "../ui/textarea"
 
 const Submit = () => {
   const { pending } = useFormStatus()
@@ -54,14 +53,10 @@ export const EditPost = ({
   size,
   age,
   image,
-  rabia: defaultRabia,
-  polivalente: defaultPolivalente,
-  polivalente2: defaultPolivalente2,
-  polivalente_refuerzo: defaultPolivalenteRefuerzo,
+  details,
 }: Omit<Post, "createAt" | "email" | "user">) => {
   const formRef = useRef<HTMLFormElement>(null)
   const [isOpen, setOpen] = useState(false)
-  const { polivalente, polivalente2, polivalente_refuerzo, rabia } = vaccines
   const handleAction = async (data: FormData) => {
     try {
       await editPost(data)
@@ -154,64 +149,16 @@ export const EditPost = ({
           </div>
           <fieldset>
             <legend className="mb-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-              Vacunas
+              Detalles (vacunas, castrado, etc.)
             </legend>
             <div className="grid gap-y-2">
               <div className="flex items-center space-x-2">
-                <Checkbox
-                  id="polivalente"
-                  name="polivalente"
-                  value={polivalente}
-                  defaultChecked={!!defaultPolivalente}
+                <Textarea
+                  name="details"
+                  id="details"
+                  className="resize-none"
+                  defaultValue={details || ""}
                 />
-                <label
-                  htmlFor="polivalente"
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  1era dosis Polivalente (sextuple)
-                </label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Checkbox
-                  defaultChecked={!!defaultPolivalente2}
-                  id="polivalente2"
-                  name="polivalente2"
-                  value={polivalente2}
-                />
-                <label
-                  htmlFor="polivalente2"
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  2da dosis Polivalente
-                </label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Checkbox
-                  id="rabia"
-                  name="rabia"
-                  value={"rabia"}
-                  defaultChecked={!!defaultRabia}
-                />
-                <label
-                  htmlFor="rabia"
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  Rabia
-                </label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <Checkbox
-                  defaultChecked={!!defaultPolivalenteRefuerzo}
-                  id="polivalente_refuerzo"
-                  name="polivalente_refuerzo"
-                  value={polivalente_refuerzo}
-                />
-                <label
-                  htmlFor="polivalente_refuerzo"
-                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                  Refuerzo polivalente
-                </label>
               </div>
             </div>
           </fieldset>

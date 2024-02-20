@@ -2,7 +2,6 @@ import { CldImage } from "@/components/post/cld-image"
 import Image from "next/image"
 import dogbook from "@/assets/dogbook.png"
 import type { Post as TPost } from "@prisma/client"
-import { type TVaccines, vaccines } from "@/types"
 import {
   Card,
   CardContent,
@@ -22,10 +21,7 @@ export const Post = ({
   image,
   age,
   user,
-  polivalente,
-  polivalente2,
-  polivalente_refuerzo,
-  rabia,
+  details,
   size,
   createAt,
   withActions = false,
@@ -36,10 +32,7 @@ export const Post = ({
     email,
     location,
     contact,
-    polivalente,
-    polivalente2,
-    rabia,
-    polivalente_refuerzo,
+    details,
     image,
     age,
     user,
@@ -49,11 +42,6 @@ export const Post = ({
   const day = new Date(createAt).getDate()
   const month = new Date(createAt).getMonth() + 1
   const year = new Date(createAt).getFullYear()
-  const vaccinesArr: TVaccines[] = []
-  if (polivalente) vaccinesArr.push(vaccines.polivalente)
-  if (polivalente2) vaccinesArr.push(vaccines.polivalente2)
-  if (polivalente_refuerzo) vaccinesArr.push(vaccines.polivalente_refuerzo)
-  if (rabia) vaccinesArr.push(vaccines.rabia)
 
   const date = `${day}/${month}/${year}`
 
@@ -75,14 +63,9 @@ export const Post = ({
         <CardTitle>{title}</CardTitle>
       </CardHeader>
       <CardContent>
-        {vaccinesArr.length > 0 && (
+        {details && (
           <div className="mb-2">
-            <strong className="font-medium">Vacunas:</strong>{" "}
-            <ul>
-              {vaccinesArr.map((vaccine) => (
-                <li key={vaccine}>{vaccine}</li>
-              ))}
-            </ul>
+            <strong className="font-medium">Detalles:</strong> <p>{details}</p>
           </div>
         )}
         {size && (

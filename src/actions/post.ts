@@ -29,10 +29,7 @@ const postSchema = z.object({
   contact: z.string(),
   size: z.string().optional(),
   age: z.string().optional(),
-  polivalente: z.string().optional(),
-  polivalente2: z.string().optional(),
-  rabia: z.string().optional(),
-  polivalente_refuerzo: z.string().optional(),
+  details: z.string().optional(),
   email: z.string(),
   user: z.string(),
   image: z.unknown(),
@@ -43,10 +40,7 @@ const editSchema = z.object({
   id: z.string(),
   location: z.string(),
   size: z.string().optional(),
-  polivalente: z.string().optional(),
-  polivalente2: z.string().optional(),
-  rabia: z.string().optional(),
-  polivalente_refuerzo: z.string().optional(),
+  details: z.string().optional(),
   age: z.string().optional(),
   contact: z.string().optional(),
   image: z.unknown(),
@@ -96,14 +90,7 @@ export const createPost = async (data: FormData) => {
   const email = session?.user?.email
   if (!email) redirect("/api/auth/signin")
 
-  const {
-    image,
-    polivalente2,
-    polivalente,
-    polivalente_refuerzo,
-    rabia,
-    ...postData
-  } = postSchema.parse(Object.fromEntries(data))
+  const { image, ...postData } = postSchema.parse(Object.fromEntries(data))
   const file = image as File
   let publicId = ""
 
@@ -115,10 +102,6 @@ export const createPost = async (data: FormData) => {
 
   await prisma.post.create({
     data: {
-      rabia: !!rabia,
-      polivalente: !!polivalente,
-      polivalente2: !!polivalente2,
-      polivalente_refuerzo: !!polivalente_refuerzo,
       ...postData,
       createAt: Date.now(),
       image: publicId,
@@ -145,15 +128,7 @@ export const editPost = async (data: FormData) => {
     }
   }
 
-  const {
-    id,
-    publicId: imageId,
-    polivalente2,
-    polivalente,
-    polivalente_refuerzo,
-    rabia,
-    ...mutableData
-  } = postData
+  const { id, ...mutableData } = postData
 
   await prisma.post.update({
     where: { id: postData.id },
@@ -161,10 +136,6 @@ export const editPost = async (data: FormData) => {
       ...mutableData,
       createAt: Date.now(),
       image: publicId,
-      rabia: !!rabia,
-      polivalente: !!polivalente,
-      polivalente2: !!polivalente2,
-      polivalente_refuerzo: !!polivalente_refuerzo,
     },
   })
   revalidatePath("/")
