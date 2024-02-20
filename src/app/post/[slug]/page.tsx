@@ -2,8 +2,6 @@ import React from "react"
 import prisma from "@/lib/prisma"
 import { redirect } from "next/navigation"
 import { CldImage } from "@/components/post/cld-image"
-import { vaccines } from "@/types"
-import type { TVaccines } from "@/types"
 
 import { Metadata } from "next"
 
@@ -46,28 +44,12 @@ const Post = async ({ params: { slug } }: { params: { slug: string } }) => {
       </div>
     )
 
-  const {
-    age,
-    contact,
-    createAt,
-    email,
-    id,
-    image,
-    location,
-    polivalente,
-    polivalente2,
-    polivalente_refuerzo,
-    rabia,
-    size,
-    title,
-    user,
-  } = post
+  const { age, contact, email, image, location, details, size, title, user } =
+    post
 
-  const vaccinesArr: TVaccines[] = []
-  if (polivalente) vaccinesArr.push(vaccines.polivalente)
-  if (rabia) vaccinesArr.push(vaccines.rabia)
-  if (polivalente2) vaccinesArr.push(vaccines.polivalente2)
-  if (polivalente_refuerzo) vaccinesArr.push(vaccines.polivalente_refuerzo)
+  const detailsArr = details?.split("\n") ?? []
+
+  console.log(details)
 
   return (
     <div className="mb-10">
@@ -99,15 +81,17 @@ const Post = async ({ params: { slug } }: { params: { slug: string } }) => {
               <p>{size}</p>
             </div>
           )}
-          {vaccinesArr.length > 0 && (
+          {details && (
             <div className="mb-3">
               <h2 className="font-semibold tracking-tight sm:text-xl">
-                Vacunas
+                Detalles
               </h2>
               <ul>
-                {vaccinesArr.map((vaccine) => (
-                  <li key={vaccine}>{vaccine}</li>
-                ))}
+                <p>
+                  {detailsArr.map((detail, i) => (
+                    <p key={i}>{detail}</p>
+                  ))}
+                </p>
               </ul>
             </div>
           )}

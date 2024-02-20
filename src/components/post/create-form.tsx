@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useId, useRef } from "react"
+import React, {  useRef } from "react"
 
 import { AlertCircle } from "lucide-react"
 
@@ -21,8 +21,7 @@ import {
   SelectValue,
 } from "../ui/select"
 import { toast } from "../ui/use-toast"
-import { Checkbox } from "../ui/checkbox"
-import { vaccines } from "@/types"
+import { Textarea } from "../ui/textarea"
 
 const Submit = () => {
   const { pending } = useFormStatus()
@@ -41,16 +40,11 @@ const Submit = () => {
 }
 
 export const CreateForm = () => {
-  const polivalenteId = useId()
-  const polivalente2Id = useId()
-  const rabiaId = useId()
-  const polivalenteRefuerzoId = useId()
 
   const formRef = useRef<HTMLFormElement>(null)
   const { data: session } = useSession()
   const email = session?.user?.email ?? ""
   const user = session?.user?.name ?? ""
-  const { polivalente, polivalente2, polivalente_refuerzo, rabia } = vaccines
 
   const handleAction = async (data: FormData) => {
     try {
@@ -124,47 +118,11 @@ export const CreateForm = () => {
 
         <fieldset>
           <legend className="mb-2 text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
-            Vacunas
+            Detalles (vacunas, castrado, etc.)
           </legend>
           <div className="grid gap-y-2">
             <div className="flex items-center space-x-2">
-              <Checkbox id={polivalenteId} name="polivalente" />
-              <label
-                htmlFor={polivalenteId}
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              >
-                {polivalente}
-              </label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Checkbox id={polivalente2Id} name="polivalente2" />
-              <label
-                htmlFor={polivalente2Id}
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              >
-                {polivalente2}
-              </label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Checkbox id={rabiaId} name="rabia" value={rabia} />
-              <label
-                htmlFor={rabiaId}
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              >
-                {rabia}
-              </label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <Checkbox
-                id={polivalenteRefuerzoId}
-                name="polivalente_refuerzo"
-              />
-              <label
-                htmlFor={polivalenteRefuerzoId}
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              >
-                {polivalente_refuerzo}
-              </label>
+              <Textarea name="details" id="details" className="resize-none" />
             </div>
           </div>
         </fieldset>
