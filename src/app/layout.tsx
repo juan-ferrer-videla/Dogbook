@@ -58,36 +58,34 @@ export default async function RootLayout({
             <Header />
             <main className="container mx-auto grow">{children}</main>
             <footer className="border-t border-t-muted py-8 text-center">
-              <small>
-                Es una iniciativa de{" "}
-                <a
-                  href="https://juan-ferrer.vercel.app"
-                  className="text-primary lg:text-sm"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Juan Ferrer
-                </a>{" "}
-                y{" "}
-                <a
-                  href="https://www.linkedin.com/in/martina-fortes-del-campo-3771b0142/"
-                  className="text-primary lg:text-sm"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Martina Fortes
-                </a>
-              </small>
-              <p>
-                <Link href={"/privacy-policy"} className="text-sm">
-                  Politicas de privacidad
-                </Link>
+              <p className="mb-2">
+                <small>
+                  Es una iniciativa de{" "}
+                  <a
+                    href="https://juan-ferrer.vercel.app"
+                    className="text-primary lg:text-sm"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Juan Ferrer
+                  </a>{" "}
+                  y{" "}
+                  <a
+                    href="https://www.linkedin.com/in/martina-fortes-del-campo-3771b0142/"
+                    className="text-primary lg:text-sm"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Martina Fortes
+                  </a>
+                </small>
               </p>
-              <p>
-                <Link href={"/terms-of-service"} className="text-sm">
-                  Terminos del servicio
-                </Link>
-              </p>
+              <Link href={"/privacy-policy"} className="block p-2 text-sm">
+                Politicas de privacidad
+              </Link>
+              <Link href={"/terms-of-service"} className="block p-2 text-sm">
+                Terminos del servicio
+              </Link>
             </footer>
             <Toaster />
           </ThemeProvider>
