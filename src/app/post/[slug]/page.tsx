@@ -47,6 +47,8 @@ const Post = async ({ params: { slug } }: { params: { slug: string } }) => {
   const { age, contact, email, image, location, details, size, title, user } =
     post
 
+  const detailsArr = details?.split("\n") ?? []
+
   return (
     <div className="mb-10">
       <h1 className="mb-6 text-center text-3xl font-bold leading-tight tracking-tighter sm:mb-10 md:text-6xl lg:leading-[1.1]">
@@ -83,7 +85,11 @@ const Post = async ({ params: { slug } }: { params: { slug: string } }) => {
                 Detalles
               </h2>
               <ul>
-                <p>{details}</p>
+                <p>
+                  {detailsArr.map((detail, i) => (
+                    <p key={i}>{detail}</p>
+                  ))}
+                </p>
               </ul>
             </div>
           )}

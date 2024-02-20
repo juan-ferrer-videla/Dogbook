@@ -68,9 +68,11 @@ export const Post = ({
         {details && (
           <div className="mb-2">
             <strong className="font-medium">Detalles:</strong>{" "}
-            {detailsArr.map((detail, i) => (
-              <p key={i}>{detail}</p>
-            ))}
+            <div className="line-clamp-3">
+              {detailsArr.map((detail, i) => (
+                <p key={i}>{detail}</p>
+              ))}
+            </div>
           </div>
         )}
         {size && (
