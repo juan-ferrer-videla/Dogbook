@@ -49,21 +49,20 @@ const Post = async ({ params: { slug } }: { params: { slug: string } }) => {
 
   const detailsArr = details?.split("\n") ?? []
 
-  console.log(details)
-
   return (
     <div className="mb-10">
       <h1 className="mb-6 text-center text-3xl font-bold leading-tight tracking-tighter sm:mb-10 md:text-6xl lg:leading-[1.1]">
         {title}
       </h1>
-      <div className="grid gap-x-12 gap-y-8 text-center lg:grid-cols-post lg:text-start">
+      <div className="grid gap-x-12 gap-y-8 text-center">
         {image && (
           <CldImage
             alt="Perro"
-            className=" mx-auto rounded"
+            className=" mx-auto w-auto rounded"
             src={image}
-            width={680}
-            height={680}
+            sizes="(max-width: 768px) 100vw, 33vw"
+            width={500}
+            height={500}
           />
         )}
         <div>

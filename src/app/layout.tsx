@@ -69,7 +69,7 @@ export default async function RootLayout({
                   >
                     Juan Ferrer
                   </a>{" "}
-                  y{" "}
+                  {/*           y{" "}
                   <a
                     href="https://www.linkedin.com/in/martina-fortes-del-campo-3771b0142/"
                     className="text-primary lg:text-sm"
@@ -77,7 +77,7 @@ export default async function RootLayout({
                     rel="noopener noreferrer"
                   >
                     Martina Fortes
-                  </a>
+                  </a> */}
                 </small>
               </p>
               <Link href={"/privacy-policy"} className="block p-2 text-sm">

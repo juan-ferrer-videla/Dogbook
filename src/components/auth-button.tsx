@@ -52,7 +52,7 @@ const AuthButton = () => {
   return (
     <Button
       onClick={() => {
-        signIn()
+        signIn("google")
       }}
       disabled={status === "loading"}
     >

@@ -6,6 +6,7 @@ import { revalidatePath } from "next/cache"
 import { v2 as cloudinary } from "cloudinary"
 import { getServerSession } from "next-auth"
 import { redirect } from "next/navigation"
+import { toTrim } from "@/lib/utils"
 
 const cloudinaryConfig = cloudinary.config({
   cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
@@ -90,8 +91,13 @@ export const createPost = async (data: FormData) => {
   const email = session?.user?.email
   if (!email) redirect("/api/auth/signin")
 
-  const { image, ...postData } = postSchema.parse(Object.fromEntries(data))
+  const { image, ...postDataNoTrim } = postSchema.parse(
+    Object.fromEntries(data)
+  )
+  const postData = toTrim(postDataNoTrim)
+
   const file = image as File
+
   let publicId = ""
 
   if (file.size) {
@@ -115,7 +121,9 @@ export const editPost = async (data: FormData) => {
   const email = session?.user?.email
   if (!email) redirect("/api/auth/signin")
 
-  const postData = editSchema.parse(Object.fromEntries(data))
+  const postDataNoTrim = editSchema.parse(Object.fromEntries(data))
+  const postData = toTrim(postDataNoTrim)
+
   const file = postData.image as File
   let publicId = postData.publicId
 
