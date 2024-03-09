@@ -1,6 +1,6 @@
 "use client"
 
-import React, {  useRef } from "react"
+import React, { useRef } from "react"
 
 import { AlertCircle } from "lucide-react"
 
@@ -40,7 +40,6 @@ const Submit = () => {
 }
 
 export const CreateForm = () => {
-
   const formRef = useRef<HTMLFormElement>(null)
   const { data: session } = useSession()
   const email = session?.user?.email ?? ""
@@ -112,7 +111,12 @@ export const CreateForm = () => {
           />
         </div>
         <div className="grid w-full items-center gap-1.5">
-          <Label htmlFor="image">Imagen</Label>
+          <div className="flex justify-between">
+            <Label htmlFor="image">Imagen</Label>
+            <small className="text-muted-foreground">
+              Formato 16/9 recomendado
+            </small>
+          </div>
           <Input type="file" id="image" name="image" accept="image/*" />
         </div>
 

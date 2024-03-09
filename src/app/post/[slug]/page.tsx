@@ -55,16 +55,11 @@ const Post = async ({ params: { slug } }: { params: { slug: string } }) => {
         {title}
       </h1>
       <div className="grid gap-x-12 gap-y-8 text-center">
-        {image && (
-          <CldImage
-            alt="Perro"
-            className=" mx-auto w-auto rounded"
-            src={image}
-            sizes="(max-width: 768px) 100vw, 33vw"
-            width={500}
-            height={500}
-          />
-        )}
+        <div className="relative mx-auto aspect-video w-full max-w-screen-md object-contain object-center">
+          {image && (
+            <CldImage alt="Perro" className=" rounded" src={image} fill />
+          )}
+        </div>
         <div>
           {age && (
             <div className="mb-3">
